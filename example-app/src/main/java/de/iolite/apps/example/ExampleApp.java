@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Nonnull;
 
+import org.apache.commons.lang3.Validate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -73,6 +74,36 @@ import de.iolite.utilities.time.series.TimeInterval;
  * @since 1.0
  */
 public final class ExampleApp extends AbstractIOLITEApp {
+
+	private final class DeviceOnOffStatusLogger implements DeviceBooleanPropertyObserver {
+
+		@Nonnull
+		private final String identifier;
+
+		private DeviceOnOffStatusLogger(final String deviceIdentifier) {
+			this.identifier = Validate.notNull(deviceIdentifier, "'deviceIdentifier' must not be null");
+		}
+
+		@Override
+		public void deviceChanged(final Device element) {
+			// nothing here
+		}
+
+		@Override
+		public void keyChanged(final String key) {
+			// nothing here
+		}
+
+		@Override
+		public void valueChanged(final Boolean value) {
+			if (value) {
+				LOGGER.debug("device '{}' turned on", this.identifier);
+			}
+			else {
+				LOGGER.debug("device '{}' turned off", this.identifier);
+			}
+		}
+	}
 
 	/**
 	 * A response handler returning devices filtered by the property type.
@@ -296,28 +327,7 @@ public final class ExampleApp extends AbstractIOLITEApp {
 			if (onProperty != null) {
 				LOGGER.debug("device '{}' has ON/OFF property, current value: '{}'", device.getIdentifier(), onProperty.getValue());
 
-				onProperty.setObserver(new DeviceBooleanPropertyObserver() {
-
-					@Override
-					public void deviceChanged(final Device element) {
-						// nothing here
-					}
-
-					@Override
-					public void keyChanged(final String key) {
-						// nothing here
-					}
-
-					@Override
-					public void valueChanged(final Boolean value) {
-						if (value) {
-							LOGGER.debug("device '{}' turned on", device.getIdentifier());
-						}
-						else {
-							LOGGER.debug("device '{}' turned off", device.getIdentifier());
-						}
-					}
-				});
+				onProperty.setObserver(new DeviceOnOffStatusLogger(device.getIdentifier()));
 			}
 		}
 

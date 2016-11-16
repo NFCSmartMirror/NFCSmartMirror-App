@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>de.iolite.app</groupId>
@@ -55,7 +54,7 @@
 		</resources>
 
 		<plugins>
-			<!-- IOLITE uses Java 8-->
+			<!-- IOLITE uses Java 8 -->
 			<plugin>
 				<inherited>true</inherited>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -66,8 +65,7 @@
 				</configuration>
 			</plugin>
 
-			<!-- This plugin downloads/installs/builds all required stuff for the 
-				front end project. -->
+			<!-- This plugin downloads/installs/builds all required stuff for the front end project. -->
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
@@ -129,7 +127,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<!-- FindBugs check on compile, fail even on Low priority violations -->
 			<plugin>
 				<inherited>true</inherited>
@@ -139,8 +137,7 @@
 
 				<!-- plugin configuration defaults to 'pedantic' and is partially overridden by the validation profiles -->
 				<configuration>
-					<!-- Enables analysis which takes more memory but finds more bugs. If you run out of memory, changes the value of the
-						effort element to 'Low'. -->
+					<!-- Enables analysis which takes more memory but finds more bugs. If you run out of memory, changes the value of the effort element to 'Low'. -->
 					<effort>Max</effort>
 					<!-- Values are 'Low', 'Medium' and 'High'. 'Low' reports all bugs, 'High' reports only most critical bugs -->
 					<threshold>Low</threshold>
@@ -186,7 +183,7 @@
 		</plugins>
 	</build>
 
-	<!-- Build the app and copy to the USER_HOME/.iolite/apps/ when running 'mvn -Deploy'-->
+	<!-- Build the app and copy to the USER_HOME/.iolite/apps/ when running 'mvn -Deploy' -->
 	<profiles>
 		<profile>
 			<activation>
@@ -196,8 +193,7 @@
 			</activation>
 			<build>
 				<plugins>
-					<!-- utility for easy testing changes on example-app: copies the jar 
-						directly into .iolite/apps and clears FileStorageService folder -->
+					<!-- utility for easy testing changes on example-app: copies the jar directly into .iolite/apps and clears FileStorageService folder -->
 					<plugin>
 						<artifactId>maven-antrun-plugin</artifactId>
 						<executions>
@@ -208,8 +204,7 @@
 								</goals>
 								<configuration>
 									<tasks>
-										<copy verbose="true" file="target/${project.artifactId}.jar"
-											tofile="${user.home}/.iolite/apps/${project.artifactId}.jar" />
+										<copy verbose="true" file="target/${project.artifactId}.jar" tofile="${user.home}/.iolite/apps/${project.artifactId}.jar" />
 									</tasks>
 								</configuration>
 							</execution>
@@ -241,6 +236,12 @@
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>20160810</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.5</version>
 		</dependency>
 
 		<!-- Logging -->
