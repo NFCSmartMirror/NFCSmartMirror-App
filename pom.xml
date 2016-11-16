@@ -16,5 +16,6 @@
 
 	<modules>
 		<module>example-app</module>
+		<module>example-driver</module>
 	</modules>
 </project>
