@@ -1,0 +1,32 @@
+// define your LESS classes
+// we recommend to extend the bootstrap LESS classes: http://lesscss.org/features/#extend-feature
+// or add with mixins: http://lesscss.org/features/#mixins-feature
+
+@body-bg: #FAD7A0; // overwrite the Bootstrap background color
+
+.example-container {
+	&:extend(.container-fluid); // lets extend a Bootstrap class
+}
+
+.example-row {
+	.make-row(); // use Bootstrap mixin
+}
+
+.example-title {
+	.make-xs-column(12); // title should always span a whole row, Bootstrap has 12 columns,
+	
+	font-weight: bold;   // make the title bold
+	
+	// some margins
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+.example-responsive-content {
+	.make-xs-column(12); // this element should fill the whole with in the mobile view
+	.make-sm-column(6);  // in bigger views, show 2 contents in one row
+}
+
+.example-whole-row-content {
+	.make-xs-column(12); 
+}

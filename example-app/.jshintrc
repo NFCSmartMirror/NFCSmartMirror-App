@@ -1,0 +1,25 @@
+{
+  "globalstrict": true,
+  "globals": {
+    "angular": false,
+    "describe": false,
+    "it": false,
+    "expect": false,
+    "beforeEach": false,
+    "afterEach": false,
+    "module": false,
+    "inject": false,
+
+    "require": false,
+
+    // iolite stuff
+    "Client": false, // SID is saved here,
+    "LocalizedMessages": false,
+    "ModelAPIProfiles": false,
+    "ModelAPIClient": false,
+    "ValueParameter": false,
+    "QueryParameter": false,
+    "UnsubscribeRequest": false,
+    "SubscribeRequest": false
+  }
+}

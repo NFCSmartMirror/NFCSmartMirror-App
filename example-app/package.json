@@ -1,0 +1,36 @@
+{
+  "name": "angular-example-app",
+  "private": true,
+  "version": "0.0.0",
+  "description": "",
+  "repository": "git@iolite.aot.tu-berlin.de:iolite-apps/angular-example-app.git",
+  "license": "",
+  "devDependencies": {
+    "angular-mocks": "~1.5.8",
+    "bower": "~1.7.9",
+    "grunt": "~0.4.5",
+    "grunt-bower-concat": "~1.0.0",
+    "grunt-cli": "~1.2.0",
+    "grunt-contrib-concat": "~1.0.1",
+    "grunt-contrib-connect": "~1.0.2",
+    "grunt-contrib-copy": "~1.0.0",
+    "grunt-contrib-jshint": "~1.0.0",
+    "grunt-contrib-less": "~1.4.0",
+    "grunt-contrib-uglify": "~2.0.0",
+    "grunt-contrib-watch": "~1.0.0",
+    "grunt-htmlhint": "~0.9.13",
+    "grunt-lesshint": "~1.4.0",
+    "jasmine-core": "~2.5.2",
+    "karma": "~1.3.0",
+    "karma-jasmine": "~1.0.2",
+    "karma-junit-reporter": "~1.1.0",
+    "karma-phantomjs-launcher": "~1.0.2",
+    "less": "~2.7.1",
+    "less-plugin-autoprefix": "~1.5.1",
+    "phantomjs-prebuilt": "~2.1.7"
+  },
+  "scripts": {
+    "postinstall": "",
+    "karma": "karma start src/test/resources/assets/karma.conf.js"
+  }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="exampleApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <title>Angular Example App</title>
+
+	<!-- our style sheet generated from the LESS files -->
+	<link rel="stylesheet" type="text/css" href="css/example-bootstrap.css">
+
+    <!-- HTML5 shim must be put in header! -->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<!-- all third party dependencies created with Grunt -->
+    <script type="text/javascript" src="lib/third-party.js"></script>
+
+	<!-- wait until Model API is initialized -->
+    <script type="text/javascript">
+        // wait until bus service is available
+        window.name = 'NG_DEFER_BOOTSTRAP!';
+        window["Client"] = {
+            SID: "{{SID}}",
+            throwErrorOnBootFailure: true,
+            readyCallback: function () {
+                (function() {
+                    $(document).ready(function() {
+                        angular.resumeBootstrap([]);
+                    });
+                })();
+            }
+        };
+    </script>
+    
+    <!-- Model API dependencies -->
+    <script type="text/javascript" src="/bus/ModelAPICommunicationObject.js"></script>
+    <script type="text/javascript" src="/bus/ModelAPI.js"></script>
+    <script type="text/javascript" src="/bus/ModelAPIWebsocketClientFactory.js"></script>
+    <script type="text/javascript" src="/bus/bus-client-bootstrap.js"></script>
+</head>
+
+<body>
+	<!-- include the content template -->
+	<div ng-include="'content.tpl.html'"></div>
+
+	<!-- load our angular modules/controllers/services/.. -->
+	<script type="text/javascript" src="app/example-app.js"></script>
+	<script type="text/javascript" src="app/example-controller1.js"></script>
+	<script type="text/javascript" src="app/example-controller2.js"></script>
+</body>
+</html>

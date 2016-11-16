@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:iolite-app-configuration
+	xmlns:ns2="www.iolite.de/iolite-app-configuration"
+	name="Example App"
+	className="de.iolite.apps.example.ExampleApp">
+
+	<api-permission name="de.iolite.app.api.frontend.FrontendAPI" type="READ_WRITE"/>
+	<api-permission name="de.iolite.app.api.storage.StorageAPI" type="READ_WRITE"/>
+	<api-permission name="de.iolite.app.api.device.access.DeviceAPI" type="READ_WRITE"/>
+	<api-permission name="de.iolite.app.api.environment.EnvironmentAPI" type="READ_WRITE"/>
+	<api-permission name="de.iolite.app.api.user.access.UserAPI" type="READ_WRITE"/>
+	<api-permission name="de.iolite.app.api.network.NetworkAPI" type="READ_WRITE"/>
+	<api-permission name="de.iolite.api.heating.access.HeatingAPI" type="READ_WRITE"/>
+
+	<icon-url>appicon.png</icon-url>
+
+	<preferred-width>0</preferred-width>
+	<preferred-height>0</preferred-height>
+
+</ns2:iolite-app-configuration>

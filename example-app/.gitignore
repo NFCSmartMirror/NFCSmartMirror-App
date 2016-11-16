@@ -1,0 +1,24 @@
+*.pyc
+logs
+*.log
+*.iml
+target
+version.properties
+.DS_Store
+*.iml
+.idea
+*.pid
+
+# ignore Eclipse files, use "git add -f" if you want to add these files.
+#.classpath
+#.project
+.settings
+bin/
+target/
+/example-app.jardesc
+
+# front end resources
+node/
+node_modules/
+bower_components/
+src/main/generated-resources/assets/css/*.css

@@ -58,9 +58,8 @@ virtual devices to IOLITE.
 
 For a source code example of a driver, please check the `/.iolite/drivers/diagnostics-driver.jar`.  
 
-## Example App (with source)
-The provided `/.iolite` folder contains an example application under
-`/.iolite/apps/example-app.jar`.
+## Example App
+The provided [/example-app](/example-app) folder contains an example IOLITE application.
 
 The JAR file **contains source files**, so it can be used as a coding example.
 
