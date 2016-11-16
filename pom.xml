@@ -31,6 +31,9 @@
 					<id>local-iolite-apis</id>
 					<name>Local IOLITE Dependencies</name>
 					<url>file://${project.basedir}/lib</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
 				</repository>
 			</repositories>
 		</profile>
