@@ -75,7 +75,32 @@ import de.iolite.utilities.time.series.TimeInterval;
  */
 public final class ExampleApp extends AbstractIOLITEApp {
 
-	private final class DeviceOnOffStatusLogger implements DeviceBooleanPropertyObserver {
+	private static final class DeviceJSONRequestHandler extends FrontendAPIRequestHandler {
+
+		@Override
+		protected IOLITEHTTPResponse handleRequest(final IOLITEHTTPRequest request, final String subPath) {
+			final JSONArray deviceIdentifiers = new JSONArray();
+
+			final JSONObject response = new JSONObject();
+			response.put("identifiers", deviceIdentifiers);
+			return new IOLITEHTTPStaticResponse(response.toString(), HTTPStatus.OK, IOLITEHTTPResponse.JSON_CONTENT_TYPE);
+		}
+	}
+
+	private static final class DeviceAddAndRemoveLogger implements DeviceAPIObserver {
+
+		@Override
+		public void addedToDevices(final Device device) {
+			LOGGER.debug("a new device added '{}'", device.getIdentifier());
+		}
+
+		@Override
+		public void removedFromDevices(final Device device) {
+			LOGGER.debug("a device removed '{}'", device.getIdentifier());
+		}
+	}
+
+	private static final class DeviceOnOffStatusLogger implements DeviceBooleanPropertyObserver {
 
 		@Nonnull
 		private final String identifier;
@@ -306,18 +331,7 @@ public final class ExampleApp extends AbstractIOLITEApp {
 	 */
 	private void initializeDeviceManager() {
 		// register a device observer
-		this.deviceAPI.setObserver(new DeviceAPIObserver() {
-
-			@Override
-			public void addedToDevices(final Device device) {
-				LOGGER.debug("a new device added '{}'", device.getIdentifier());
-			}
-
-			@Override
-			public void removedFromDevices(final Device device) {
-				LOGGER.debug("a device removed '{}'", device.getIdentifier());
-			}
-		});
+		this.deviceAPI.setObserver(new DeviceAddAndRemoveLogger());
 
 		// go through all devices, and register a property observer for ON/OFF properties
 		for (final Device device : this.deviceAPI.getDevices()) {
@@ -430,18 +444,7 @@ public final class ExampleApp extends AbstractIOLITEApp {
 		this.frontendAPI.registerRequestHandler("rooms", new RoomsResponseHandler());
 		this.frontendAPI.registerRequestHandler("devices", new DevicesResponseHandler());
 
-		// TODO
-		this.frontendAPI.registerRequestHandler("get_devices.json", new FrontendAPIRequestHandler() {
-
-			@Override
-			protected IOLITEHTTPResponse handleRequest(final IOLITEHTTPRequest request, final String subPath) {
-				final JSONArray deviceIdentifiers = new JSONArray();
-
-				final JSONObject response = new JSONObject();
-				response.put("identifiers", deviceIdentifiers);
-				return new IOLITEHTTPStaticResponse(response.toString(), HTTPStatus.OK, IOLITEHTTPResponse.JSON_CONTENT_TYPE);
-			}
-		});
+		this.frontendAPI.registerRequestHandler("get_devices.json", new DeviceJSONRequestHandler());
 	}
 
 	/**

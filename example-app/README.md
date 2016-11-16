@@ -7,7 +7,7 @@ Build with `mvn package`. Then put into `<user-home>/.iolite/apps` and install i
 
 You can use `-Deploy` option so maven puts the resulting file into `<user-home>/.iolite/apps` automatically, e.g. `mvn -Deploy package`.
 
-To use the project in Eclipse, call `mvn eclipse:eclipse` to generate Eclipse project files.
+To use the project in Eclipse, call `mvn eclipse:eclipse -DdownloadJavadocs=true` to generate Eclipse project files.
 
 # User Interface Resources
 
