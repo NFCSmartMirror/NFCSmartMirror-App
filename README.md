@@ -32,8 +32,8 @@ This section lists all resources you need to work with IOLITE.
 ## IOLITE Binary
 The IOLITE binary is the [iolite.jar](iolite.jar).
 
-Before the binary is executed, please copy the `/.iolite` directory into your
-<user-home> directory. The `/.iolite` directory provided in this ZIP holds example
+Before the binary is executed, please copy the [/.iolite](/.iolite) directory into your
+<user-home> directory. The [/.iolite](/.iolite) directory provided in this ZIP holds example
 drivers, an app and an example logging configuration file.
 
 To run IOLITE, open a console and execute the following command:
