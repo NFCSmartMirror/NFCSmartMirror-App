@@ -101,19 +101,17 @@ meta-data (e.g. artifactId) with information matching your app.
 # FAQ
 
 * How to change the port number of IOLITE web server?
-  Open the `<user-home>/.iolite/IOLITERuntime.xml` file and change the value of 
-  the `http.port` property of the `<http>` service node (~line 140). You should
-  also change the `announce.dnssd.port` property value of the `<discovery>`
-  service node.
+    
+    Open the `<user-home>/.iolite/IOLITERuntime.xml` file and change the value of the `http.port` property of the `<http>` service node (~line 140). You should also change the `announce.dnssd.port` property value of the `<discovery>` service node.
   
 * How to reset IOLITE, e.g. if something goes wrong?
-  Delete the `<user-home>/.iolite/FileStorageService` directory.
+    
+    Delete the `<user-home>/.iolite/FileStorageService` directory.
   
-* How to change the logging?
-  Modify the `<user-home>/.iolite/logback.xml`.
+* How to change the logging configuration?
+    
+    Modify the `<user-home>/.iolite/logback.xml`.
   
 * How to change IOLITE's time zone?
-  Open the `<user-home>/.iolite/IOLITERuntime.xml` file and change the value of 
-  the `timezone.id.default` property of the `<settings>` service node (~line 21).
-  Please note that when no default time zone is configured, the platform's default
-  is used.
+   
+    Open the `<user-home>/.iolite/IOLITERuntime.xml` file and change the value of the `timezone.id.default` property of the `<settings>` service node (~line 21). Please note that when no default time zone is configured, the platform's default is used.
