@@ -42,7 +42,6 @@ import de.iolite.app.api.frontend.FrontendAPI;
 import de.iolite.app.api.frontend.FrontendAPIException;
 import de.iolite.app.api.frontend.util.FrontendAPIRequestHandler;
 import de.iolite.app.api.frontend.util.FrontendAPIUtility;
-import de.iolite.app.api.network.NetworkAPI;
 import de.iolite.app.api.storage.StorageAPI;
 import de.iolite.app.api.storage.StorageAPIException;
 import de.iolite.app.api.user.access.UserAPI;
@@ -166,8 +165,6 @@ public final class ExampleApp extends AbstractIOLITEApp {
 	private StorageAPI storageAPI;
 	private DeviceAPI deviceAPI;
 	private EnvironmentAPI environmentAPI;
-	@SuppressWarnings("unused")
-	private NetworkAPI networkAPI;
 	private UserAPI userAPI;
 
 	private HeatingAPI heatingAPI;
@@ -243,11 +240,6 @@ public final class ExampleApp extends AbstractIOLITEApp {
 			for (final PlaceSchedule placeSchedule : this.heatingAPI.getHeatingSchedulesOfPlaces()) {
 				LOGGER.debug("Heating schedule found for place '{}'", placeSchedule.getPlaceIdentifier());
 			}
-
-			// Network API
-			this.networkAPI = context.getAPI(NetworkAPI.class);
-			// TODO:
-			// final URLConnection connection = this.networkAPI.openURLConnection(new URL("http://www.spiegel.de"));
 		}
 		catch (final IOLITEAPINotResolvableException e) {
 			throw new StartFailedException(MessageFormat.format("Start failed due to required but not resolvable AppAPI: {0}", e.getMessage()), e);
