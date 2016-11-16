@@ -23,10 +23,8 @@ This project provides all resources necessary for app and driver development.
 # Prerequisites
 
 To work with IOLITE you will need:
-- JDK 8.0 or higher version
-- Maven: https://maven.apache.org
-  Please note that user credentials needed to access the Maven repository will
-  be provided separately.
+* JDK 8.0 or higher version
+* [Maven](https://maven.apache.org) build tool. Please note that user credentials needed to access the Maven repository will be provided separately.
 
 # Resources of this package
 This section lists all resources you need to work with IOLITE.
@@ -68,25 +66,23 @@ The JAR file **contains source files**, so it can be used as a coding example.
 
 The app does not feature any particular functionality other than testing IOLITE
 APIs. It can be installed via the HCC.
-- open the HCC user interface in your browser
-- Login
-- Go to _IOLITE Apps_ (bottom navigation bar)
-- Go to _Store_ (top navigation bar)
-- You should see _Example App_ element available. Click on the _arrow down_ icon
-  to install the app.
-- Go to _Installed_ (top navigation bar)
-- Click on the _Example App_ icon to open its user interface. The user interface
-  contains some developer logs from the APIs.
+1. open the HCC user interface in your browser
+2. Login
+3. Go to _IOLITE Apps_ (bottom navigation bar)
+4. Go to _Store_ (top navigation bar)
+5. You should see _Example App_ element available. Click on the _arrow down_ icon to install the app.
+6. Go to _Installed_ (top navigation bar)
+7. Click on the _Example App_ icon to open its user interface. The user interface contains some developer logs from the APIs.
 
 ## Documents
 This ZIP package contains several documents about IOLITE in the `/docs` folder:
-- `IOLITE App Development Guide.pdf` - provides all necessary information about
+* `IOLITE App Development Guide.pdf` - provides all necessary information about
   IOLITE app development. Check it for further details.
-- `IOLITE Driver Development Guide.pdf` - provides all necessary information
+* `IOLITE Driver Development Guide.pdf` - provides all necessary information
   about IOLITE driver development. Check it for further details.
-- `IOLITE Home Control Center User Guide.pdf` - overview of the Home Control
+* `IOLITE Home Control Center User Guide.pdf` - overview of the Home Control
   Center user interface and features.
-- `iolite-driver-api Profile Reference.pdf`- holds the reference of all basic
+* `iolite-driver-api Profile Reference.pdf`- holds the reference of all basic
   property types and profiles defined by IOLITE. It describes the details of the device
   types and their properties. Check it to see what properties to use in apps / drivers
   and what their exepcted values are.
@@ -104,19 +100,19 @@ meta-data (e.g. artifactId) with information matching your app.
 
 # FAQ
 
-- How to change the port number of IOLITE web server?
+* How to change the port number of IOLITE web server?
   Open the `<user-home>/.iolite/IOLITERuntime.xml` file and change the value of 
   the `http.port` property of the `<http>` service node (~line 140). You should
   also change the `announce.dnssd.port` property value of the `<discovery>`
   service node.
   
-- How to reset IOLITE, e.g. if something goes wrong?
+* How to reset IOLITE, e.g. if something goes wrong?
   Delete the `<user-home>/.iolite/FileStorageService` directory.
   
-- How to change the logging?
+* How to change the logging?
   Modify the `<user-home>/.iolite/logback.xml`.
   
-- How to change IOLITE's time zone?
+* How to change IOLITE's time zone?
   Open the `<user-home>/.iolite/IOLITERuntime.xml` file and change the value of 
   the `timezone.id.default` property of the `<settings>` service node (~line 21).
   Please note that when no default time zone is configured, the platform's default
