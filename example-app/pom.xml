@@ -16,6 +16,18 @@
 		<frontend.plugin.version>0.0.26</frontend.plugin.version>
 	</properties>
 
+	<!-- IOLITE dependencies can be provided locally so build is possible without iolite repo access -->
+	<repositories>
+		<repository>
+			<id>local-iolite-apis</id>
+			<name>Local IOLITE Dependencies</name>
+			<url>file://${project.basedir}/lib</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 	<build>
 		<resources>
 			<resource>
