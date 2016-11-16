@@ -17,25 +17,4 @@
 	<modules>
 		<module>example-app</module>
 	</modules>
-
-	<profiles>
-		<profile>
-			<activation>
-				<property>
-					<name>local-iolite-apis</name>
-				</property>
-			</activation>
-			<!-- IOLITE dependencies can be provided locally so build is possible without iolite repo access -->
-			<repositories>
-				<repository>
-					<id>local-iolite-apis</id>
-					<name>Local IOLITE Dependencies</name>
-					<url>file://${project.basedir}/lib</url>
-					<snapshots>
-						<enabled>true</enabled>
-					</snapshots>
-				</repository>
-			</repositories>
-		</profile>
-	</profiles>
 </project>
