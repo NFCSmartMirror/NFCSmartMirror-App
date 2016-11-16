@@ -87,7 +87,7 @@ This ZIP package contains several documents about IOLITE in the `/docs` folder:
   and what their exepcted values are.
 
 ## Example Maven configuration
-The `/maven/settings.xml` file shows the Maven repository configuration to use with IOLITE.
+The [/maven/settings.xml](/maven/settings.xml) file shows the Maven repository configuration to use with IOLITE.
 
 Please note that the `username` and `password` fields **need to be replaced** with the
 configuration provided to you by the IOLITE team.
