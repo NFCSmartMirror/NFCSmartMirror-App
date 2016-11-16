@@ -30,7 +30,7 @@
 				<repository>
 					<id>local-iolite-apis</id>
 					<name>Local IOLITE Dependencies</name>
-					<url>file://${project.basedir}/libs</url>
+					<url>file://${project.basedir}/lib</url>
 				</repository>
 			</repositories>
 		</profile>
