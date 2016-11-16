@@ -2,7 +2,7 @@
 
 Copyright (C) 2016 IOLITE GmbH, All rights reserved.
 
-See LICENSE.md for license details.
+See `LICENSE` for license details.
 
 # Introduction
 
