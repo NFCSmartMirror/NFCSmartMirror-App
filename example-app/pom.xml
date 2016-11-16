@@ -208,7 +208,7 @@
 								</goals>
 								<configuration>
 									<tasks>
-										<copy verbose="true" file="target/${project.build.finalName}.jar"
+										<copy verbose="true" file="target/${project.artifactId}.jar"
 											tofile="${user.home}/.iolite/apps/${project.artifactId}.jar" />
 									</tasks>
 								</configuration>
