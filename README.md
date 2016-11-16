@@ -30,7 +30,7 @@ To work with IOLITE you will need:
 This section lists all resources you need to work with IOLITE.
 
 ## IOLITE Binary
-In order to work with IOLITE you need an IOLITE binary.
+The IOLITE binary is the [iolite.jar](iolite.jar).
 
 Before the binary is executed, please copy the `/.iolite` directory into your
 <user-home> directory. The `/.iolite` directory provided in this ZIP holds example
