@@ -45,7 +45,7 @@ systems this may be impossible. A custom port number can be configured in the
 
 After the of start IOLITE, you can access the Home Control Center user interface
 via a browser under the address:
-`http://localhost/`
+[http://localhost/](http://localhost)
 
 (if you reconfigure the port number, the address is `http://localhost:<port>/`)
 
