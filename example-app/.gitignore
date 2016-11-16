@@ -22,3 +22,5 @@ node/
 node_modules/
 bower_components/
 src/main/generated-resources/assets/css/*.css
+/.classpath
+/.project
