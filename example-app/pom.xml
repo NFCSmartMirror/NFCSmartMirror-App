@@ -23,6 +23,7 @@
 			<name>Local IOLITE Dependencies</name>
 			<url>file://${project.basedir}/lib</url>
 			<snapshots>
+				<checksumPolicy>ignore</checksumPolicy>
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
