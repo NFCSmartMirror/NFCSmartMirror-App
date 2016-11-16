@@ -1,3 +1,3 @@
 image: maven:3-jdk-8
 build:
-  script: "mvn install -B"
+  script: "mvn install -B -Dlocal-iolite-apis"

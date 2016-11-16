@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>de.iolite.app.api</groupId>
+  <artifactId>heating-api-access</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <localCopy>true</localCopy>
+    </snapshot>
+    <lastUpdated>20161116153740</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>0.1-SNAPSHOT</value>
+        <updated>20161116153740</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>

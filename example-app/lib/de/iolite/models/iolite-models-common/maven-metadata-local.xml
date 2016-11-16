@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>de.iolite.models</groupId>
+  <artifactId>iolite-models-common</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20161116153740</lastUpdated>
+  </versioning>
+</metadata>
