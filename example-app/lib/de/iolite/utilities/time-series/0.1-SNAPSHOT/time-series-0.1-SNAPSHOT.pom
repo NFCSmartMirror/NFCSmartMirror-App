@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.iolite</groupId>
+		<artifactId>superpom</artifactId>
+		<version>12-SNAPSHOT</version>
+	</parent>
+
+	<groupId>de.iolite.utilities</groupId>
+	<artifactId>time-series</artifactId>
+	<version>0.1-SNAPSHOT</version>
+
+	<name>IOLITE time series utility</name>
+
+	<packaging>jar</packaging>
+	<inceptionYear>2014</inceptionYear>
+
+	<scm>
+		<connection>scm:git:git@iolite.aot.tu-berlin.de:iolite-utilities/time-series.git</connection>
+		<developerConnection>scm:git:git@iolite.aot.tu-berlin.de:iolite-utilities/time-series.git</developerConnection>
+		<url>https://iolite.aot.tu-berlin.de/iolite-utilities/time-series/</url>
+	</scm>
+
+	<dependencies>
+
+		<!-- third-party -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<!-- Apache Commons Lang, Don't use the version 3.2+ because it requires 
+			Java6 -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
+		<!-- Testing -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>			
+		</dependency>
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<scope>test</scope>			
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>1.4.188</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

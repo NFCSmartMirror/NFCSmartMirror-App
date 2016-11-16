@@ -1,0 +1,35 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+											 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.iolite</groupId>
+		<artifactId>superpom</artifactId>
+		<version>12-SNAPSHOT</version>
+	</parent>
+
+	<groupId>de.iolite.app.api</groupId>
+	<artifactId>network-api</artifactId>
+	<version>0.1-SNAPSHOT</version>
+
+	<name>Network API</name>
+	<description>Network API.</description>
+
+	<packaging>jar</packaging>
+	<inceptionYear>2014</inceptionYear>
+
+	<scm>
+		<connection>scm:git:git@iolite.aot.tu-berlin.de:iolite-apis/network-api.git</connection>
+		<developerConnection>scm:git:git@iolite.aot.tu-berlin.de:iolite-apis/network-api.git</developerConnection>
+		<url>https://iolite.aot.tu-berlin.de/iolite-apis/network-api/</url>
+	</scm>
+
+	<dependencies>
+		<!-- IOLITE Runtime API Common-->
+		<dependency>
+			<groupId>de.iolite.common</groupId>
+			<artifactId>runtime-api-common</artifactId>
+			<version>0.1-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+</project>

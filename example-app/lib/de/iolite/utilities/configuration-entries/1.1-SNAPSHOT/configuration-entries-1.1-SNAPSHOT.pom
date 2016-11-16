@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>de.iolite</groupId>
+		<artifactId>superpom</artifactId>
+        <version>12-SNAPSHOT</version>
+	</parent>
+
+	<groupId>de.iolite.utilities</groupId>
+	<artifactId>configuration-entries</artifactId>
+	<version>1.1-SNAPSHOT</version>
+
+	<name>IOLITE configuration utilities</name>
+	<description>Utilities for the IOLITE configuration as annotations and validation related utilities.</description>
+
+	<packaging>jar</packaging>
+	<inceptionYear>2014</inceptionYear>
+
+	<scm>
+		<connection>scm:git:git@iolite.aot.tu-berlin.de:iolite-utilities/configuration-entries.git</connection>
+		<developerConnection>scm:git:git@iolite.aot.tu-berlin.de:iolite-utilities/configuration-entries.git</developerConnection>
+		<url>https://iolite.aot.tu-berlin.de/iolite-utilities/configuration-entries/</url>
+	  <tag>HEAD</tag>
+  </scm>
+
+	<dependencies>
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+
+		<!-- Testing -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+	</dependencies>
+</project>
