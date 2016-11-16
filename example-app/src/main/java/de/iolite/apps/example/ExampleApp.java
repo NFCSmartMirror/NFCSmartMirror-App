@@ -158,8 +158,9 @@ public final class ExampleApp extends AbstractIOLITEApp {
 		}
 	}
 
-	/** Logger */
-	static final Logger LOGGER = LoggerFactory.getLogger(ExampleApp.class);
+	@Nonnull
+	private static final Logger LOGGER = LoggerFactory.getLogger(ExampleApp.class);
+
 	/* App APIs */
 	private FrontendAPI frontendAPI;
 	private StorageAPI storageAPI;
