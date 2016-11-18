@@ -38,11 +38,6 @@
 	} ]);
 
 	exampleApp.run(function() {
-		try {
-			// this removes the 300ms delay on mobile Safari.
-			FastClick.attach(document.body);
-		} catch (err) {
-			console.log("Could not setup FastClick due to: " + err.message);
-		}
+		// empty
 	});
 })();
