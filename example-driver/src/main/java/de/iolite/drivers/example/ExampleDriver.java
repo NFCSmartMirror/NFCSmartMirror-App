@@ -154,7 +154,7 @@ public final class ExampleDriver implements Driver {
 		lamp1.fromManufacturer("IOLITE GmbH");
 		lamp1.withDataPoint(DataPointTypes.ON_OFF_STATUS.name().toLowerCase()).ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_on_ID);
 		lamp1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
-				DataPointTypes.POWER_USAGE.name().toLowerCase()).ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_on_ID);
+				DataPointTypes.POWER_USAGE.name().toLowerCase()).ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_powerUsage_ID);
 		lamp1.addIfAbsent();
 	}
 }
