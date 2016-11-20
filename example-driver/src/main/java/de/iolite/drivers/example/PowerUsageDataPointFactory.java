@@ -5,6 +5,7 @@
 
 package de.iolite.drivers.example;
 
+import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
@@ -109,7 +110,8 @@ final class PowerUsageDataPointFactory implements DataPointFactory {
 			@Nonnull final DataPointValueCallback callback)
 			throws DataPointConfigurationException, DataPointInstantiationException {
 		final double initialValue = configuration.getDouble(ExampleDriver.CONFIGURATION_INITIAL_VALUE);
-		if (configuration.getBoolean(ExampleDriver.CONFIGURATION_RANDOMIZE_VALUE)) {
+		final Optional<Boolean> randomizeValue = configuration.optBoolean(ExampleDriver.CONFIGURATION_RANDOMIZE_VALUE);
+		if (randomizeValue.isPresent() && randomizeValue.get()) {
 			return new PowerUsageDataPointWithRandomization(initialValue, callback, this.scheduler);
 		}
 		return new PowerUsageDataPoint(initialValue, callback);
