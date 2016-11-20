@@ -151,6 +151,7 @@ public final class ExampleDriver implements Driver {
 	private void configureExampleDevices(@Nonnull final DeviceManagement deviceManagement)
 			throws DeviceConfigurationException {
 		final DeviceConfigurationBuilder lamp1 = deviceManagement.configure("lamp1", DriverConstants.PROFILE_Lamp_ID);
+		lamp1.fromManufacturer("IOLITE GmbH");
 		lamp1.withDataPoint(DataPointTypes.ON_OFF_STATUS.name().toLowerCase()).ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_on_ID);
 		lamp1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
 				DataPointTypes.POWER_USAGE.name().toLowerCase()).ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_on_ID);
