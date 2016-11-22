@@ -74,7 +74,7 @@ APIs. It can be installed via the HCC.
 7. Click on the _Example App_ icon to open its user interface. The user interface contains some developer logs from the APIs.
 
 ## Documents
-This ZIP package contains several documents about IOLITE in the `/docs` folder:
+This ZIP package contains several documents about IOLITE in the [/docs](/docs) folder:
 * `IOLITE App Development Guide.pdf` - provides all necessary information about
   IOLITE app development. Check it for further details.
 * `iolite-driver-api Profile Reference.pdf`- holds the reference of all basic
