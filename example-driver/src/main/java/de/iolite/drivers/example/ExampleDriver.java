@@ -39,13 +39,25 @@ import de.iolite.utilities.concurrency.scheduler.Scheduler;
 public final class ExampleDriver implements Driver {
 
 	private enum DataPointTypes {
-		POWER_USAGE, ON_OFF_STATUS;
+		POWER_USAGE("power_usage"), ON_OFF_STATUS("on_off_status");
+
+		@Nonnull
+		private final String name;
+
+		private DataPointTypes(@Nonnull final String typeName) {
+			this.name = typeName;
+		}
+
+		@Nonnull
+		private String getName() {
+			return this.name;
+		}
 
 		@Nonnull
 		private static DataPointTypes get(@Nonnull final String dataPointTypeName)
 				throws DataPointConfigurationException {
 			for (final DataPointTypes value : values()) {
-				if (value.name().equalsIgnoreCase(dataPointTypeName)) {
+				if (value.getName().equalsIgnoreCase(dataPointTypeName)) {
 					return value;
 				}
 			}
@@ -152,9 +164,9 @@ public final class ExampleDriver implements Driver {
 			throws DeviceConfigurationException {
 		final DeviceConfigurationBuilder lamp1 = deviceManagement.configure("lamp1", DriverConstants.PROFILE_Lamp_ID);
 		lamp1.fromManufacturer("IOLITE GmbH");
-		lamp1.withDataPoint(DataPointTypes.ON_OFF_STATUS.name().toLowerCase()).ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_on_ID);
+		lamp1.withDataPoint(DataPointTypes.ON_OFF_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_on_ID);
 		lamp1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
-				DataPointTypes.POWER_USAGE.name().toLowerCase()).ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_powerUsage_ID);
+				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_powerUsage_ID);
 		lamp1.addIfAbsent();
 	}
 }
