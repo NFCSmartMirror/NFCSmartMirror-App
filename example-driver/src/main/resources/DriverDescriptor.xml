@@ -4,7 +4,7 @@
     <mandatoryConfiguration>initial.value</mandatoryConfiguration>
     <optionalConfiguration>randomize.value</optionalConfiguration>
   </dataPointTypes>
-  <dataPointTypes name="on_off_status"/>
-  <configurationEntryTypes xsi:type="iolite-driver-descriptor:DoubleEntry" name="initial.value" defaultValue="100" maximum="3600.0" minimum="0.0"/>
+  <dataPointTypes name="on_off_status" direction="ReadAndWrite"/>
+  <configurationEntryTypes xsi:type="iolite-driver-descriptor:DoubleEntry" name="initial.value" defaultValue="100" maximum="3600.0"/>
   <configurationEntryTypes xsi:type="iolite-driver-descriptor:BooleanEntry" name="randomize.value" defaultValue="false"/>
 </iolite-driver-descriptor:IOLITEDriverDescriptor>
