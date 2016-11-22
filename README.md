@@ -77,10 +77,6 @@ APIs. It can be installed via the HCC.
 This ZIP package contains several documents about IOLITE in the `/docs` folder:
 * `IOLITE App Development Guide.pdf` - provides all necessary information about
   IOLITE app development. Check it for further details.
-* `IOLITE Driver Development Guide.pdf` - provides all necessary information
-  about IOLITE driver development. Check it for further details.
-* `IOLITE Home Control Center User Guide.pdf` - overview of the Home Control
-  Center user interface and features.
 * `iolite-driver-api Profile Reference.pdf`- holds the reference of all basic
   property types and profiles defined by IOLITE. It describes the details of the device
   types and their properties. Check it to see what properties to use in apps / drivers
