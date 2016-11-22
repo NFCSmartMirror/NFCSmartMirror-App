@@ -31,6 +31,38 @@
 		</plugins>
 	</build>
 
+	<!-- Build the app and copy to the USER_HOME/.iolite/apps/ when running 'mvn -Deploy' -->
+	<profiles>
+		<profile>
+			<activation>
+				<property>
+					<name>eploy</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<!-- utility for easy testing changes on example-app: copies the jar directly into .iolite/apps and clears FileStorageService folder -->
+					<plugin>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<configuration>
+									<tasks>
+										<copy verbose="true" file="target/${project.artifactId}.jar" tofile="${user.home}/.iolite/drivers/${project.artifactId}.jar" />
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 	<dependencies>
 		<!-- Driver API -->
 		<dependency>
