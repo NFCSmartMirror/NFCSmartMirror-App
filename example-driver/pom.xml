@@ -41,7 +41,7 @@
 			</activation>
 			<build>
 				<plugins>
-					<!-- utility for easy testing changes on example-app: copies the jar directly into .iolite/apps and clears FileStorageService folder -->
+					<!-- utility for easy testing changes on example-app: copies the jar directly into .iolite/drivers folder -->
 					<plugin>
 						<artifactId>maven-antrun-plugin</artifactId>
 						<executions>
