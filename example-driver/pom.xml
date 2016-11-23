@@ -16,7 +16,6 @@
 	</organization>
 
 	<build>
-		<finalName>example-driver</finalName>
 		<plugins>
 			<!-- IOLITE uses Java 8 -->
 			<plugin>
