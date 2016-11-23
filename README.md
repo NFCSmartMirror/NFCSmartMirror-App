@@ -89,9 +89,7 @@ Please note that the `username` and `password` fields **need to be replaced** wi
 configuration provided to you by the IOLITE team.
 
 ## Example App pom
-The `pom.xml` is an example Maven configuration for an IOLITE App. You can use
-it as a starting point for your `pom.xml`. Please make sure to fill out the
-meta-data (e.g. artifactId) with information matching your app.
+The [/example-app/pom.xml](/example-app/pom.xml) is an example Maven configuration for an IOLITE App. You can use it as a starting point for your `pom.xml`. Please make sure to fill out the meta-data (e.g. artifactId) with information matching your app.
 
 # FAQ
 
