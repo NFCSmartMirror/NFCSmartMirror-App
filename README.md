@@ -74,13 +74,9 @@ APIs. It can be installed via the HCC.
 7. Click on the _Example App_ icon to open its user interface. The user interface contains some developer logs from the APIs.
 
 ## Documents
-This ZIP package contains several documents about IOLITE in the `/docs` folder:
+This ZIP package contains several documents about IOLITE in the [/docs](/docs) folder:
 * `IOLITE App Development Guide.pdf` - provides all necessary information about
   IOLITE app development. Check it for further details.
-* `IOLITE Driver Development Guide.pdf` - provides all necessary information
-  about IOLITE driver development. Check it for further details.
-* `IOLITE Home Control Center User Guide.pdf` - overview of the Home Control
-  Center user interface and features.
 * `iolite-driver-api Profile Reference.pdf`- holds the reference of all basic
   property types and profiles defined by IOLITE. It describes the details of the device
   types and their properties. Check it to see what properties to use in apps / drivers
@@ -93,9 +89,7 @@ Please note that the `username` and `password` fields **need to be replaced** wi
 configuration provided to you by the IOLITE team.
 
 ## Example App pom
-The `pom.xml` is an example Maven configuration for an IOLITE App. You can use
-it as a starting point for your `pom.xml`. Please make sure to fill out the
-meta-data (e.g. artifactId) with information matching your app.
+The [/example-app/pom.xml](/example-app/pom.xml) is an example Maven configuration for an IOLITE App. You can use it as a starting point for your `pom.xml`. Please make sure to fill out the meta-data (e.g. artifactId) with information matching your app.
 
 # FAQ
 
