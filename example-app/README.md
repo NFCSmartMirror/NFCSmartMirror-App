@@ -57,3 +57,10 @@ During the maven build, all JS/LESS/HTML assets are checked for syntax errors.
 We recommend you to write unit tests for your Angular components using [Karma](https://karma-runner.github.io/1.0/index.html) with [Jasmin](https://jasmine.github.io/).
 
 For each of your component, write a test and put in the folder `src/main/test/resources/assets/app/`. The test file name should end with the suffix `*.spec.js`. During the maven build, maven searches the folder and executes these tests.
+
+## Style sheets
+
+The example app uses [Bootstrap](http://getbootstrap.com/) together with [Less](http://lesscss.org/) as a style sheet framework. For the Bootstrap Less classes, see the folder `src/main/thirdparty-resources/assets/lib/bootstrap/less/`.
+You should extend those Bootstrap Less classes using either the [extend](http://lesscss.org/features/#extend-feature) or [mixins](http://lesscss.org/features/#mixins-feature) Less feature. For example, see the folder `src/main/resources/assets/less/`.
+
+During the maven build, a CSS file `src/main/generated-resources/assets/css/example-bootstrap.css` is generated. You shouldn't touch this file. Instead of that, please edit the Less files in `src/main/resources/assets/less/`.
