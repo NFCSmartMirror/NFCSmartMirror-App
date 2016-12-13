@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:driverConfiguration xmlns:ns2="http://www.iolite.de/models/driver-configuration-1.0.xsd">
+    <dataPoints dataPointGroupName="current" dataPointName="temperature" driverIdentifier="open-weather-map-driver.jar" readable="true" writable="false">
+        <configuration>
+            <entry>
+                <key>datapoint.type</key>
+                <value>current.temperature</value>
+            </entry>
+        </configuration>
+    </dataPoints>
+    <dataPoints dataPointGroupName="current" dataPointName="rainfall" driverIdentifier="open-weather-map-driver.jar" readable="true" writable="false">
+        <configuration>
+            <entry>
+                <key>datapoint.type</key>
+                <value>current.rainfall</value>
+            </entry>
+        </configuration>
+    </dataPoints>
+    <dataPoints dataPointGroupName="current" dataPointName="windDirection" driverIdentifier="open-weather-map-driver.jar" readable="true" writable="false">
+        <configuration>
+            <entry>
+                <key>datapoint.type</key>
+                <value>current.wind.direction</value>
+            </entry>
+        </configuration>
+    </dataPoints>
+</ns2:driverConfiguration>

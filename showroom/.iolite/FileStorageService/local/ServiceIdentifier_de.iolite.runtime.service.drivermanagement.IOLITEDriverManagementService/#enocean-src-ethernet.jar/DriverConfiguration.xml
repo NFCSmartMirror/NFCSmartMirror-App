@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:driverConfiguration xmlns:ns2="http://www.iolite.de/models/driver-configuration-1.0.xsd">
+    <dataPoints dataPointGroupName="111368" dataPointName="http://iolite.de#contactDetected" driverIdentifier="enocean-src-ethernet.jar" readable="true" writable="false">
+        <configuration>
+            <entry>
+                <key>eep-func</key>
+                <value>0</value>
+            </entry>
+            <entry>
+                <key>telegram-receive-data-part-shortcut</key>
+                <value>CO</value>
+            </entry>
+            <entry>
+                <key>eep-rorg</key>
+                <value>D5</value>
+            </entry>
+            <entry>
+                <key>enocean-sender-id</key>
+                <value>111368</value>
+            </entry>
+            <entry>
+                <key>eep-t-21-bit-receiver</key>
+                <value>Irrelevant</value>
+            </entry>
+            <entry>
+                <key>eep-nu-bit-receiver</key>
+                <value>Irrelevant</value>
+            </entry>
+            <entry>
+                <key>eep-type</key>
+                <value>1</value>
+            </entry>
+        </configuration>
+    </dataPoints>
+</ns2:driverConfiguration>

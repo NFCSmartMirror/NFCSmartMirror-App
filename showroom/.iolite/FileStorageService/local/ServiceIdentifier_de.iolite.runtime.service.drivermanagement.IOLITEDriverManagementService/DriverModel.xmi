@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ASCII"?>
+<drivermodel:IOLITEDriverModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:drivermodel="http://www.iolite.de/models/iolite-driver-1.0.ecore">
+  <dataPointSet/>
+  <driverSet>
+    <drivers identifier="dlinkdriver.jar" active="true" installedAt="1462884566487" startedAt="1480618941631" jarURL="file:/tmp/ioliteBinaries/6175750f-2c0f-4e25-87f7-0e3d2304fa53.jar">
+      <configurationProperties xsi:type="drivermodel:StringConfigurationProperty" identifier="Static camera addresses" value=""/>
+      <configurationProperties xsi:type="drivermodel:IntegerConfigurationProperty" identifier="DCS-2132LB (192.168.1.200) port" minimum="80" maximum="65535" value="80"/>
+      <configurationProperties xsi:type="drivermodel:PasswordConfigurationProperty" identifier="DCS-2132LB (192.168.1.200) password" value=""/>
+      <configurationProperties xsi:type="drivermodel:StringConfigurationProperty" identifier="DCS-2132LB (192.168.1.200) username" value="admin"/>
+      <descriptor name="D-Link" vendor="IOLITE GmbH" ioliteDriverClass="de.iolite.drivers.dlink.DLinkDriver" category="IOLITE"/>
+    </drivers>
+    <drivers identifier="miele.jar" active="true" installedAt="1462884567207" startedAt="1480618949025" jarURL="file:/tmp/ioliteBinaries/aff6da80-a11f-4e65-91ef-a14a1e100291.jar">
+      <descriptor name="Miele@Home" vendor="IOLITE GmbH" ioliteDriverClass="de.iolite.drivers.miele.MieleDriver"/>
+    </drivers>
+    <drivers identifier="open-weather-map-driver.jar" active="true" installedAt="1462884567751" startedAt="1480618949951" jarURL="file:/tmp/ioliteBinaries/d4bd99eb-dec3-466d-b05a-fd3013af7cb4.jar">
+      <configurationProperties xsi:type="drivermodel:StringConfigurationProperty" identifier="location.city.name" regex="" value="Berlin"/>
+      <configurationProperties xsi:type="drivermodel:IntegerConfigurationProperty" identifier="update.interval" value="600"/>
+      <configurationProperties xsi:type="drivermodel:EnumerationConfigurationProperty" identifier="location.country.code" value="">
+        <enumerationValues>Albania</enumerationValues>
+        <enumerationValues>Algeria</enumerationValues>
+        <enumerationValues>Argentina</enumerationValues>
+        <enumerationValues>Australia</enumerationValues>
+        <enumerationValues>Austria</enumerationValues>
+        <enumerationValues>Bahrain</enumerationValues>
+        <enumerationValues>Belarus</enumerationValues>
+        <enumerationValues>Belgium</enumerationValues>
+        <enumerationValues>Bolivia</enumerationValues>
+        <enumerationValues>Bosnia and Herzegovina</enumerationValues>
+        <enumerationValues>Brazil</enumerationValues>
+        <enumerationValues>Bulgaria</enumerationValues>
+        <enumerationValues>Canada</enumerationValues>
+        <enumerationValues>Chile</enumerationValues>
+        <enumerationValues>China</enumerationValues>
+        <enumerationValues>Colombia</enumerationValues>
+        <enumerationValues>Costa Rica</enumerationValues>
+        <enumerationValues>Croatia</enumerationValues>
+        <enumerationValues>Cyprus</enumerationValues>
+        <enumerationValues>Czech Republic</enumerationValues>
+        <enumerationValues>Denmark</enumerationValues>
+        <enumerationValues>Dominican Republic</enumerationValues>
+        <enumerationValues>Ecuador</enumerationValues>
+        <enumerationValues>Egypt</enumerationValues>
+        <enumerationValues>El Salvador</enumerationValues>
+        <enumerationValues>Estonia</enumerationValues>
+        <enumerationValues>Finland</enumerationValues>
+        <enumerationValues>France</enumerationValues>
+        <enumerationValues>Germany</enumerationValues>
+        <enumerationValues>Greece</enumerationValues>
+        <enumerationValues>Guatemala</enumerationValues>
+        <enumerationValues>Honduras</enumerationValues>
+        <enumerationValues>Hong Kong</enumerationValues>
+        <enumerationValues>Hungary</enumerationValues>
+        <enumerationValues>Iceland</enumerationValues>
+        <enumerationValues>India</enumerationValues>
+        <enumerationValues>Indonesia</enumerationValues>
+        <enumerationValues>Iraq</enumerationValues>
+        <enumerationValues>Ireland</enumerationValues>
+        <enumerationValues>Israel</enumerationValues>
+        <enumerationValues>Italy</enumerationValues>
+        <enumerationValues>Japan</enumerationValues>
+        <enumerationValues>Jordan</enumerationValues>
+        <enumerationValues>Kuwait</enumerationValues>
+        <enumerationValues>Latvia</enumerationValues>
+        <enumerationValues>Lebanon</enumerationValues>
+        <enumerationValues>Libya</enumerationValues>
+        <enumerationValues>Lithuania</enumerationValues>
+        <enumerationValues>Luxembourg</enumerationValues>
+        <enumerationValues>Macedonia</enumerationValues>
+        <enumerationValues>Malaysia</enumerationValues>
+        <enumerationValues>Malta</enumerationValues>
+        <enumerationValues>Mexico</enumerationValues>
+        <enumerationValues>Montenegro</enumerationValues>
+        <enumerationValues>Morocco</enumerationValues>
+        <enumerationValues>Netherlands</enumerationValues>
+        <enumerationValues>New Zealand</enumerationValues>
+        <enumerationValues>Nicaragua</enumerationValues>
+        <enumerationValues>Norway</enumerationValues>
+        <enumerationValues>Oman</enumerationValues>
+        <enumerationValues>Panama</enumerationValues>
+        <enumerationValues>Paraguay</enumerationValues>
+        <enumerationValues>Peru</enumerationValues>
+        <enumerationValues>Philippines</enumerationValues>
+        <enumerationValues>Poland</enumerationValues>
+        <enumerationValues>Portugal</enumerationValues>
+        <enumerationValues>Puerto Rico</enumerationValues>
+        <enumerationValues>Qatar</enumerationValues>
+        <enumerationValues>Romania</enumerationValues>
+        <enumerationValues>Russia</enumerationValues>
+        <enumerationValues>Saudi Arabia</enumerationValues>
+        <enumerationValues>Serbia</enumerationValues>
+        <enumerationValues>Serbia and Montenegro</enumerationValues>
+        <enumerationValues>Singapore</enumerationValues>
+        <enumerationValues>Slovakia</enumerationValues>
+        <enumerationValues>Slovenia</enumerationValues>
+        <enumerationValues>South Africa</enumerationValues>
+        <enumerationValues>South Korea</enumerationValues>
+        <enumerationValues>Spain</enumerationValues>
+        <enumerationValues>Sudan</enumerationValues>
+        <enumerationValues>Sweden</enumerationValues>
+        <enumerationValues>Switzerland</enumerationValues>
+        <enumerationValues>Syria</enumerationValues>
+        <enumerationValues>Taiwan</enumerationValues>
+        <enumerationValues>Thailand</enumerationValues>
+        <enumerationValues>Tunisia</enumerationValues>
+        <enumerationValues>Turkey</enumerationValues>
+        <enumerationValues>Ukraine</enumerationValues>
+        <enumerationValues>United Arab Emirates</enumerationValues>
+        <enumerationValues>United Kingdom</enumerationValues>
+        <enumerationValues>United States</enumerationValues>
+        <enumerationValues>Uruguay</enumerationValues>
+        <enumerationValues>Venezuela</enumerationValues>
+        <enumerationValues>Vietnam</enumerationValues>
+        <enumerationValues>Yemen</enumerationValues>
+      </configurationProperties>
+      <descriptor name="Weather" vendor="IOLITE GmbH" ioliteDriverClass="de.iolite.drivers.weather.owm.OWMDriver"/>
+    </drivers>
+    <drivers identifier="knx.jar" active="true" installedAt="1462884568417" startedAt="1480618948500" jarURL="file:/tmp/ioliteBinaries/862e5202-75f1-46d7-a60d-fdf6d8dfd21a.jar">
+      <descriptor name="EIB/KNX" vendor="IOLITE GmbH" ioliteDriverClass="de.iolite.drivers.eib.EIBDriver"/>
+    </drivers>
+    <drivers identifier="bacnet.jar" active="true" installedAt="1462884568494" startedAt="1480618939983" jarURL="file:/tmp/ioliteBinaries/89ddb2f0-de8d-4cba-8862-d9b0976563fc.jar">
+      <descriptor name="BACnet" vendor="IOLITE GmbH" ioliteDriverClass="de.iolite.drivers.bacnet.BACnetDriver"/>
+    </drivers>
+    <drivers identifier="sml.jar" installedAt="1462884568729" startedAt="1474636464621" jarURL="file:/tmp/ioliteBinaries/64c10fab-70ec-4179-97e3-bfda5517a02c.jar">
+      <descriptor name="Smart Meter" vendor="IOLITE GmbH" ioliteDriverClass="de.iolite.drivers.sml.SMLDriver"/>
+    </drivers>
+    <drivers identifier="curtain.jar" active="true" installedAt="1462884568813" startedAt="1480618941422" jarURL="file:/tmp/ioliteBinaries/85b7cdd6-224c-41ea-a9fc-d6a02a32a5bc.jar">
+      <descriptor name="Smart Textile" vendor="IOLITE GmbH" ioliteDriverClass="de.iolite.drivers.smarttextile.SmartTextileDriver"/>
+    </drivers>
+    <drivers identifier="enocean-src-ethernet.jar" installedAt="1462884568923" startedAt="1479484158836" jarURL="file:/tmp/ioliteBinaries/a006c60e-d733-4be7-83c7-456313bfb887.jar">
+      <descriptor name="EnOcean SRC" vendor="IOLITE GmbH" ioliteDriverClass="de.iolite.drivers.enocean.stc.EnOceanEthernetDriver"/>
+    </drivers>
+    <drivers identifier="diagnosticsdriver.jar" active="true" installedAt="1462884569190" startedAt="1480618949298" jarURL="file:/tmp/ioliteBinaries/e6f724f7-0fba-4c08-aecd-3280ef7ce759.jar">
+      <descriptor name="Diagnostics" vendor="IOLITE GmbH" ioliteDriverClass="de.iolite.drivers.diagnostics.DiagnosticsDriver"/>
+    </drivers>
+    <drivers identifier="mirror.jar" installedAt="1462884569360" startedAt="1479487611037" jarURL="file:/tmp/ioliteBinaries/1dcdb963-323e-4aa0-b0da-4c502a7c53aa.jar">
+      <descriptor name="Mirror Driver" vendor="IOLITE GmbH" ioliteDriverClass="de.iolite.insys.mirror.MirrorDriver" category="Visualization"/>
+    </drivers>
+    <drivers identifier="simulation.jar" installedAt="1462884569547" startedAt="1480012948155" jarURL="file:/tmp/ioliteBinaries/ee18bc65-b307-496c-bf05-f3789c3286f8.jar">
+      <descriptor name="Simulation" vendor="IOLITE GmbH" ioliteDriverClass="de.iolite.drivers.simulation.SimulationDriver" category="IOLITE"/>
+    </drivers>
+    <drivers identifier="openzwave-driver.jar" searchMode="Stopped" active="true" installedAt="1474378743207" startedAt="1480618950744" jarURL="file:/tmp/ioliteBinaries/e2a01afd-3c9a-49f3-b43c-8b7478ac8603.jar">
+      <descriptor name="OpenZWave" vendor="IOLITE GmbH" ioliteDriverClass="de.iolite.drivers.openzwave.OpenZWaveDriver"/>
+    </drivers>
+    <drivers identifier="sonos-driver.jar" active="true" installedAt="1477664535831" startedAt="1480618935785" jarURL="file:/tmp/ioliteBinaries/7cd2a89c-260c-4651-a2f2-dee0fa4a2582.jar">
+      <descriptor name="Sonos" vendor="IOLITE GmbH" ioliteDriverClass="de.iolite.drivers.sonos.SonosDriver"/>
+    </drivers>
+  </driverSet>
+</drivermodel:IOLITEDriverModel>

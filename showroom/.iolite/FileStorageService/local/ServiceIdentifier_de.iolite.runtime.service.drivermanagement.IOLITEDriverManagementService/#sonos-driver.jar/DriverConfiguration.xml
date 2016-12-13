@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:driverConfiguration xmlns:ns2="http://www.iolite.de/models/driver-configuration-1.0.xsd">
+    <dataPoints dataPointGroupName="RINCON_B8E9373AD10E01400" dataPointName="http://iolite.de#mediaURI" driverIdentifier="sonos-driver.jar" readable="true" writable="true">
+        <configuration>
+            <entry>
+                <key>type</key>
+                <value>MEDIA_URI</value>
+            </entry>
+            <entry>
+                <key>UDN</key>
+                <value>RINCON_B8E9373AD10E01400</value>
+            </entry>
+        </configuration>
+    </dataPoints>
+    <dataPoints dataPointGroupName="RINCON_B8E9373AD10E01400" dataPointName="http://iolite.de#deviceStatus_sensor" driverIdentifier="sonos-driver.jar" readable="true" writable="false">
+        <configuration>
+            <entry>
+                <key>type</key>
+                <value>STATE</value>
+            </entry>
+            <entry>
+                <key>UDN</key>
+                <value>RINCON_B8E9373AD10E01400</value>
+            </entry>
+        </configuration>
+    </dataPoints>
+    <dataPoints dataPointGroupName="RINCON_B8E9373AD10E01400" dataPointName="http://iolite.de#soundVolume" driverIdentifier="sonos-driver.jar" readable="true" writable="true">
+        <configuration>
+            <entry>
+                <key>type</key>
+                <value>VOLUME</value>
+            </entry>
+            <entry>
+                <key>UDN</key>
+                <value>RINCON_B8E9373AD10E01400</value>
+            </entry>
+        </configuration>
+    </dataPoints>
+    <dataPoints dataPointGroupName="RINCON_B8E9373AD10E01400" dataPointName="http://iolite.de#playbackState" driverIdentifier="sonos-driver.jar" readable="true" writable="true">
+        <configuration>
+            <entry>
+                <key>type</key>
+                <value>PLAYBACK_STATE</value>
+            </entry>
+            <entry>
+                <key>UDN</key>
+                <value>RINCON_B8E9373AD10E01400</value>
+            </entry>
+        </configuration>
+    </dataPoints>
+</ns2:driverConfiguration>
