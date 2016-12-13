@@ -6,6 +6,7 @@ package de.iolite.drivers.example;
 
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Nonnull;
 
@@ -22,7 +23,6 @@ import de.iolite.drivers.framework.DriverAPI;
 import de.iolite.drivers.framework.device.Device;
 import de.iolite.drivers.framework.device.DeviceConfigurationBuilder;
 import de.iolite.drivers.framework.device.DeviceConfigurationObserver;
-import de.iolite.drivers.framework.device.DeviceManagement;
 import de.iolite.drivers.framework.exception.DataPointConfigurationException;
 import de.iolite.drivers.framework.exception.DataPointInstantiationException;
 import de.iolite.drivers.framework.exception.DeviceConfigurationException;
@@ -138,17 +138,25 @@ public final class ExampleDriver implements Driver {
 	 */
 	@Override
 	@Nonnull
-	public DeviceConfigurationObserver start(@Nonnull final DriverAPI driverAPI)
+	public DeviceConfigurationObserver start(@Nonnull final DriverAPI driverAPI, @Nonnull final Set<Device> existingDevices)
 			throws DriverStartFailedException {
 		// report some example devices
 		try {
-			configureExampleDevices(driverAPI.getDeviceManagement());
+			configureExampleDevices(driverAPI);
 		}
 		catch (final DeviceConfigurationException e) {
 			throw new DriverStartFailedException("Failed to configure devices", e);
 		}
 
 		final ExampleDataPointFactory factory = new ExampleDataPointFactory(driverAPI.getScheduler());
+		existingDevices.forEach(device -> {
+			try {
+				device.start(factory);
+			}
+			catch (final DeviceStartException e) {
+				LOGGER.error("Failed to start existing device '{}' due to error: {}", device.getIdentifier(), e.getMessage());
+			}
+		});
 		return new DeviceStarter(factory);
 	}
 
@@ -160,7 +168,7 @@ public final class ExampleDriver implements Driver {
 		LOGGER.debug("Stopped");
 	}
 
-	private void configureExampleDevices(@Nonnull final DeviceManagement deviceManagement)
+	private void configureExampleDevices(@Nonnull final DriverAPI deviceManagement)
 			throws DeviceConfigurationException {
 		final DeviceConfigurationBuilder lamp1 = deviceManagement.configure("lamp1", DriverConstants.PROFILE_Lamp_ID);
 		lamp1.fromManufacturer("IOLITE GmbH");
