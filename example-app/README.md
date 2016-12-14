@@ -52,6 +52,9 @@ During the maven build, all JS/LESS/HTML assets are checked for syntax errors.
  * configuration file: [.htmlhintrc](.htmlhintrc)
  * grunt task: [grunt-htmlhint](https://github.com/yaniswang/grunt-htmlhint)
 
+If the syntax checking with JSHint/CSSLint/HTMLHint is too strict, you can edit the above
+linked configuration files to relax the checking, but it is not recommended.
+
 ## Angular unit tests
 
 We recommend you to write unit tests for your Angular components using [Karma](https://karma-runner.github.io/1.0/index.html) with [Jasmin](https://jasmine.github.io/).
