@@ -91,6 +91,9 @@ configuration provided to you by the IOLITE team.
 ## Example App pom
 The [/example-app/pom.xml](/example-app/pom.xml) is an example Maven configuration for an IOLITE App. You can use it as a starting point for your `pom.xml`. Please make sure to fill out the meta-data (e.g. artifactId) with information matching your app.
 
+## Showroom configuration
+In case you are working with IOLITE in the Connected Living Showroom at the Ernst-Reuter-Platz 7 in Berlin, you need to use the [/showroom/.iolite](/showroom/.iolite) configuration.
+
 # FAQ
 
 * How to change the port number of IOLITE web server?
