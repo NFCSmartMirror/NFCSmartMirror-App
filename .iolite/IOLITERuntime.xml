@@ -16,16 +16,6 @@
 
 		<storage className="de.iolite.runtime.service.storage.file.FileStorageService"
 			runLevel="0" />
-		
-		<!-- Setting service manages global IOLITE settings, e.g. time zone -->
-		<settings className="de.iolite.runtime.service.settings.impl.SettingsService" runLevel="1">
-			<!-- configuration>
-				<entry>
-					<key>timezone.id.default</key>
-					<value>Europe/Berlin</value>
-				</entry>
-			</configuration -->
-		</settings>
 
 		<storage-preparation
 			className="de.iolite.runtime.service.storagepreparation.impl.GlobalStoragePreparationService"
@@ -54,21 +44,31 @@
 			</configuration>
 		</storage-preparation>
 
+		<!-- Setting service manages global IOLITE settings, e.g. time zone -->
+		<settings className="de.iolite.runtime.service.settings.impl.SettingsService" runLevel="2">
+			<!-- configuration>
+				<entry>
+					<key>timezone.id.default</key>
+					<value>Europe/Berlin</value>
+				</entry>
+			</configuration -->
+		</settings>
+		
 		<permission
 			className="de.iolite.runtime.service.permission.impl.PermissionService"
-			runLevel="1" />
+			runLevel="2" />
 
 		<situation-profiles
 			className="de.iolite.runtime.service.situationprofiles.impl.SituationProfilesService"
-			runLevel="1" />
+			runLevel="2" />
 
 		<user-management
 			className="de.iolite.runtime.service.usermanagement.impl.UserManagementService"
-			runLevel="2">
+			runLevel="3">
 			<configuration>
 				<entry>
 					<key>idserver.url</key>
-					<value>https://web.iolite.de:8000/idserver/api</value>
+					<value>https://boxid.iolite.de/api</value>
 				</entry>
 				<entry>
 					<key>idserver.announce.interval</key>
@@ -87,7 +87,7 @@
 				</entry>
 				<entry>
 					<key>ssl.truststore.file</key>
-					<value>ssl_truststore.jks</value>
+					<value>ssl_truststore_geotrust.jks</value>
 				</entry>
 				<entry>
 					<key>ssl.truststore.password.file</key>
@@ -101,45 +101,9 @@
 			</configuration>
 		</user-management>
 
-		<!-- App Management Service -->
-		<app-management
-			className="de.iolite.runtime.service.appmanagement.impl.AppManagementService"
-			runLevel="5">
-			<configuration>
-				<!-- TLS configuration -->
-				<entry>
-					<key>trustStoreResourceName</key>
-					<value>ssl_truststore_geotrust.jks</value>
-				</entry>
-				<entry>
-					<key>trustStorePasswordResourceName</key>
-					<value>ssl_keystore_secret</value>
-				</entry>
-				<entry>
-					<key>clientKeyStoreResourceName</key>
-					<value>ssl_client_keystore.jks</value>
-				</entry>
-				<entry>
-					<key>keyStorePasswordResourceName</key>
-					<value>ssl_keystore_secret</value>
-				</entry>
-
-				<!-- app stores -->
-				<entry>
-					<key>fileBasedStore</key>
-					<value>file://${user.home}/.iolite/apps</value>
-				</entry>
-
-				<entry>
-					<key>globalHttpBasedStore</key>
-					<value>appStore://boxstore.iolite.de/iolite-test/api</value>
-				</entry>
-			</configuration>
-		</app-management>
-
 		<!-- HTTP Service -->
 		<http className="de.iolite.runtime.service.http.grizzly.GrizzlyHTTPService"
-			runLevel="3">
+			runLevel="4">
 			<configuration>
 				<entry>
 					<key>http.host</key>
@@ -174,7 +138,7 @@
 
 		<!-- Bus Service for accessing models remotely -->
 		<bus className="de.iolite.runtime.service.bus.impl.BusService"
-			runLevel="4">
+			runLevel="5">
 			<configuration>
 				<entry>
 					<key>debug.expose.session</key>
@@ -191,15 +155,51 @@
 			</configuration>
 		</bus>
 
+		<!-- App Management Service -->
+		<app-management
+			className="de.iolite.runtime.service.appmanagement.impl.AppManagementService"
+			runLevel="6">
+			<configuration>
+				<!-- TLS configuration -->
+				<entry>
+					<key>trustStoreResourceName</key>
+					<value>ssl_truststore_geotrust.jks</value>
+				</entry>
+				<entry>
+					<key>trustStorePasswordResourceName</key>
+					<value>ssl_keystore_secret</value>
+				</entry>
+				<entry>
+					<key>clientKeyStoreResourceName</key>
+					<value>ssl_client_keystore.jks</value>
+				</entry>
+				<entry>
+					<key>keyStorePasswordResourceName</key>
+					<value>ssl_keystore_secret</value>
+				</entry>
+
+				<!-- app stores -->
+				<entry>
+					<key>fileBasedStore</key>
+					<value>file://${user.home}/.iolite/apps</value>
+				</entry>
+
+				<entry>
+					<key>globalHttpBasedStore</key>
+					<value>appStore://boxstore.iolite.de/iolite-test/api</value>
+				</entry>
+			</configuration>
+		</app-management>
+
 		<!-- Notification Service -->
 		<notification
 			className="de.iolite.runtime.service.notification.impl.NotificationService"
-			runLevel="6" />
+			runLevel="7" />
 
 		<!-- Driver Management Service -->
 		<driver-management
 			className="de.iolite.runtime.service.drivermanagement.impl.DriverManagementService"
-			runLevel="7" />
+			runLevel="8" />
 
 		<!-- Update Service -->
 		<update className="de.iolite.runtime.service.update.impl.UpdateService"
