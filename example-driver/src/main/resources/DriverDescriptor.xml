@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iolite-driver-descriptor:IOLITEDriverDescriptor xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:iolite-driver-descriptor="http://www.iolite.de/models/iolite-driver-descriptor-1.0.ecore" name="Example" vendor="IOLITE GmbH" ioliteDriverClass="de.iolite.drivers.example.ExampleDriver" category="IOLITE">
+  <dataPointTypes name="power_usage">
+    <mandatoryConfiguration>initial.value</mandatoryConfiguration>
+    <optionalConfiguration>randomize.value</optionalConfiguration>
+  </dataPointTypes>
+  <dataPointTypes name="on_off_status" direction="ReadAndWrite"/>
+  <configurationEntryTypes xsi:type="iolite-driver-descriptor:DoubleEntry" name="initial.value" defaultValue="100" maximum="3600.0"/>
+  <configurationEntryTypes xsi:type="iolite-driver-descriptor:BooleanEntry" name="randomize.value" defaultValue="false"/>
+</iolite-driver-descriptor:IOLITEDriverDescriptor>
