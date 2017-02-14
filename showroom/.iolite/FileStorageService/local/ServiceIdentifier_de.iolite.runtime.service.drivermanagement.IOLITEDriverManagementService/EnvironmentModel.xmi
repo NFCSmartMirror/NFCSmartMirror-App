@@ -20,6 +20,17 @@
       <dataPointConfiguration dataPointType="IOLITEDeviceStatus"/>
     </properties>
   </devices>
+  <devices driverIdentifier="knx.jar" typeName="TV" id="knx_kitchen_lcd0" friendlyName="OLED Display" placeIdentifier="kitchen">
+    <properties xsi:type="properties:TextProperty" name="programName">
+      <dataPointConfiguration dataPointType="TextDevice">
+        <configuration key="GatewayAddress" value="192.168.1.197"/>
+        <configuration key="Writable" value="true"/>
+        <configuration key="Readable" value="true"/>
+        <configuration key="GroupAddress" value="7/0/0"/>
+        <configuration key="DataPoint" value="16.000"/>
+      </dataPointConfiguration>
+    </properties>
+  </devices>
   <devices driverIdentifier="knx.jar" typeName="DimmableLamp" id="knx_living_lamps_1" friendlyName="Deckenleuchte" placeIdentifier="living_room">
     <properties xsi:type="properties:BooleanProperty" timestamp="1486129471653" requestedValue="false" requestedValueTimestamp="1486129471626" name="on">
       <dataPointConfiguration dataPointType="BooleanDevice">
