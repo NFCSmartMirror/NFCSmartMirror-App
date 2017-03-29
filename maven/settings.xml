@@ -7,6 +7,11 @@
 			<username>!put user id here!</username>
 			<password>!put password here!</password>
 		</server>
+		<server>
+			<id>iolite-snapshots</id>
+			<username>!put user id here!</username>
+			<password>!put password here!</password>
+		</server>
 	</servers>
 	<activeProfiles>
 		<activeProfile>iolite</activeProfile>
@@ -19,6 +24,17 @@
 					<id>iolite-production</id>
 					<name>IOLITE Production</name>
 					<url>https://web.iolite.de/nexus/content/repositories/iolite-production/</url>
+					<releases>
+						<enabled>false</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+				<repository>
+					<id>iolite-snapshots</id>
+					<name>IOLITE API Snapshots</name>
+					<url>https://web.iolite.de/nexus/content/repositories/iolite-snapshots/</url>
 					<releases>
 						<enabled>false</enabled>
 					</releases>
