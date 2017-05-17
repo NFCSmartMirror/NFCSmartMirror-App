@@ -135,9 +135,6 @@ public final class ExampleDriver implements Driver {
 	@Nonnull
 	static final String CONFIGURATION_RANDOMIZE_VALUE = "randomize.value";
 
-	@Nonnull
-	static final String CONFIGURATION_SIMULATE_VALUE = "simulate.value";
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -186,15 +183,13 @@ public final class ExampleDriver implements Driver {
 		//Configure a contact sensor device
 		final DeviceConfigurationBuilder contactSensor1 = deviceManagement.configure("contactSensor1",DriverConstants.PROFILE_ContactSensor_ID);
 		contactSensor1.fromManufacturer("IOLITE GmbH");
-		contactSensor1.withConfiguration(CONFIGURATION_SIMULATE_VALUE, true).forDataPoint(
-				DataPointTypes.CONTACT_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_ContactSensor_contactDetected_ID);
+		contactSensor1.withDataPoint(DataPointTypes.CONTACT_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_ContactSensor_contactDetected_ID);
 		contactSensor1.addIfAbsent();
 
 		//Configure a movement sensor device
 		final DeviceConfigurationBuilder movementSensor1 = deviceManagement.configure("movementSensor1",DriverConstants.PROFILE_MovementSensor_ID);
 		movementSensor1.fromManufacturer("IOLITE GmbH");
-		movementSensor1.withConfiguration(CONFIGURATION_SIMULATE_VALUE, true).forDataPoint(
-				DataPointTypes.MOVEMENT_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_MovementSensor_movementDetected_ID);
+		movementSensor1.withDataPoint(DataPointTypes.MOVEMENT_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_MovementSensor_movementDetected_ID);
 		movementSensor1.addIfAbsent();
 	}
 }

@@ -1,6 +1,5 @@
 package de.iolite.drivers.example;
 
-import java.util.Optional;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
@@ -109,10 +108,6 @@ public class ContactStatusDataPointFactory implements DataPointFactory {
 	public DataPoint create(@Nonnull final DataPointConfiguration configuration, @Nonnull final String propertyTypeIdentifier,
 			@Nonnull final DataPointValueCallback callback)
 			throws DataPointConfigurationException, DataPointInstantiationException {
-		final Optional<Boolean> simulateValue = configuration.optBoolean(ExampleDriver.CONFIGURATION_SIMULATE_VALUE);
-		if (simulateValue.isPresent() && simulateValue.get()) {
-			return new  ContactStatusDataPointFactory.ContactStatusDataPointWithSimulation(callback, this.scheduler);
-		}
-		return new ContactStatusDataPointFactory.ContactStatusDataPoint(callback);
+		return new  ContactStatusDataPointFactory.ContactStatusDataPointWithSimulation(callback, this.scheduler);
 	}
 }
