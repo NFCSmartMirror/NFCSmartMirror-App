@@ -5,6 +5,13 @@
     <optionalConfiguration>randomize.value</optionalConfiguration>
   </dataPointTypes>
   <dataPointTypes name="on_off_status" direction="ReadAndWrite"/>
+  <dataPointTypes name="contact_status">
+	<optionalConfiguration>simulate.value</optionalConfiguration>
+  </dataPointTypes>
+  <dataPointTypes name="movement_status">
+	<optionalConfiguration>simulate.value</optionalConfiguration>
+  </dataPointTypes>
   <configurationEntryTypes xsi:type="iolite-driver-descriptor:DoubleEntry" name="initial.value" defaultValue="100" maximum="3600.0"/>
   <configurationEntryTypes xsi:type="iolite-driver-descriptor:BooleanEntry" name="randomize.value" defaultValue="false"/>
+  <configurationEntryTypes xsi:type="iolite-driver-descriptor:BooleanEntry" name="simulate.value" defaultValue="false"/>
 </iolite-driver-descriptor:IOLITEDriverDescriptor>
