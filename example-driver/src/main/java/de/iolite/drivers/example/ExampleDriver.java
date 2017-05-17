@@ -39,7 +39,7 @@ import de.iolite.utilities.concurrency.scheduler.Scheduler;
 public final class ExampleDriver implements Driver {
 
 	private enum DataPointTypes {
-		POWER_USAGE("power_usage"), ON_OFF_STATUS("on_off_status");
+		POWER_USAGE("power_usage"), ON_OFF_STATUS("on_off_status"), CONTACT_STATUS("contact_status"), MOVEMENT_STATUS("movement_status");
 
 		@Nonnull
 		private final String name;
@@ -104,6 +104,8 @@ public final class ExampleDriver implements Driver {
 		private ExampleDataPointFactory(@Nonnull final Scheduler scheduler) {
 			this.strategies.put(DataPointTypes.POWER_USAGE, new PowerUsageDataPointFactory(scheduler));
 			this.strategies.put(DataPointTypes.ON_OFF_STATUS, new OnOffStatusDataPointFactory());
+			this.strategies.put(DataPointTypes.CONTACT_STATUS,new ContactStatusDataPointFactory(scheduler));
+			this.strategies.put(DataPointTypes.MOVEMENT_STATUS,new MovementStatusDataPointFactory(scheduler));
 		}
 
 		/**
@@ -170,11 +172,24 @@ public final class ExampleDriver implements Driver {
 
 	private void configureExampleDevices(@Nonnull final DriverAPI deviceManagement)
 			throws DeviceConfigurationException {
+		//Configure a lamp device
 		final DeviceConfigurationBuilder lamp1 = deviceManagement.configure("lamp1", DriverConstants.PROFILE_Lamp_ID);
 		lamp1.fromManufacturer("IOLITE GmbH");
 		lamp1.withDataPoint(DataPointTypes.ON_OFF_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_on_ID);
 		lamp1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
 				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_powerUsage_ID);
 		lamp1.addIfAbsent();
+
+		//Configure a contact sensor device
+		final DeviceConfigurationBuilder contactSensor1 = deviceManagement.configure("contactSensor1",DriverConstants.PROFILE_ContactSensor_ID);
+		contactSensor1.fromManufacturer("IOLITE GmbH");
+		contactSensor1.withDataPoint(DataPointTypes.CONTACT_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_ContactSensor_contactDetected_ID);
+		contactSensor1.addIfAbsent();
+
+		//Configure a movement sensor device
+		final DeviceConfigurationBuilder movementSensor1 = deviceManagement.configure("movementSensor1",DriverConstants.PROFILE_MovementSensor_ID);
+		movementSensor1.fromManufacturer("IOLITE GmbH");
+		movementSensor1.withDataPoint(DataPointTypes.MOVEMENT_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_MovementSensor_movementDetected_ID);
+		movementSensor1.addIfAbsent();
 	}
 }
