@@ -9,12 +9,10 @@ import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import de.iolite.drivers.api.WriteFailedException;
 import de.iolite.drivers.framework.DataPoint;
 import de.iolite.drivers.framework.DataPointConfiguration;
 import de.iolite.drivers.framework.DataPointFactory;
 import de.iolite.drivers.framework.DataPointValueCallback;
-import de.iolite.drivers.framework.WritableDataPoint;
 import de.iolite.drivers.framework.exception.DataPointConfigurationException;
 import de.iolite.drivers.framework.exception.DataPointInstantiationException;
 import de.iolite.drivers.framework.exception.IllegalValueException;
@@ -27,9 +25,9 @@ import de.iolite.utilities.concurrency.scheduler.Scheduler;
  * @since 17.05
  *
  */
-public class ContactStatusDataPointFactory implements DataPointFactory {
+public class BooleanSensorDataPointFactory implements DataPointFactory {
 
-	private static final class ContactStatusDataPointWithSimulation implements DataPoint {
+	private static final class MovementStatusDataPointWithSimulation implements DataPoint {
 
 		@Nonnull
 		private final Future<?> switchValueTask;
@@ -40,7 +38,7 @@ public class ContactStatusDataPointFactory implements DataPointFactory {
 		@Nonnull
 		private final DataPointValueCallback callback;
 
-		private ContactStatusDataPointWithSimulation(@Nonnull final DataPointValueCallback dataPointValueCallback,
+		private MovementStatusDataPointWithSimulation(@Nonnull final DataPointValueCallback dataPointValueCallback,
 				@Nonnull final Scheduler scheduler) {
 			this.callback = dataPointValueCallback;
 			this.value = true;
@@ -67,39 +65,13 @@ public class ContactStatusDataPointFactory implements DataPointFactory {
 		}
 	}
 
-	private static final class ContactStatusDataPoint implements WritableDataPoint {
-
-		@Nonnull
-		private final DataPointValueCallback callback;
-
-		private ContactStatusDataPoint(@Nonnull final DataPointValueCallback dataPointValueCallback) {
-			this.callback = dataPointValueCallback;
-		}
-
-		@Override
-		public void destroy() {
-			// nothing to do
-		}
-
-		@Override
-		public void write(@Nonnull final String newValue)
-				throws WriteFailedException {
-			try {
-				this.callback.newBooleanValue(Boolean.parseBoolean(newValue));
-			}
-			catch (final IllegalValueException e) {
-				throw new WriteFailedException(String.format("Failed to report written value '%s'", newValue), e);
-			}
-		}
-	}
-
 	@Nonnull
-	private static final Logger LOGGER = LoggerFactory.getLogger(ContactStatusDataPointFactory.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(BooleanSensorDataPointFactory.class);
 
 	@Nonnull
 	private final Scheduler scheduler;
 
-	ContactStatusDataPointFactory(@Nonnull final Scheduler dataPointScheduler) {
+	BooleanSensorDataPointFactory(@Nonnull final Scheduler dataPointScheduler) {
 		this.scheduler = Validate.notNull(dataPointScheduler, "'dataPointScheduler' must not be null");
 	}
 
@@ -108,6 +80,6 @@ public class ContactStatusDataPointFactory implements DataPointFactory {
 	public DataPoint create(@Nonnull final DataPointConfiguration configuration, @Nonnull final String propertyTypeIdentifier,
 			@Nonnull final DataPointValueCallback callback)
 			throws DataPointConfigurationException, DataPointInstantiationException {
-		return new  ContactStatusDataPointFactory.ContactStatusDataPointWithSimulation(callback, this.scheduler);
+		return new  BooleanSensorDataPointFactory.MovementStatusDataPointWithSimulation(callback, this.scheduler);
 	}
 }

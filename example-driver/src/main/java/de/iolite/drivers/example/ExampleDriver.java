@@ -39,7 +39,7 @@ import de.iolite.utilities.concurrency.scheduler.Scheduler;
 public final class ExampleDriver implements Driver {
 
 	private enum DataPointTypes {
-		POWER_USAGE("power_usage"), ON_OFF_STATUS("on_off_status"), CONTACT_STATUS("contact_status"), MOVEMENT_STATUS("movement_status");
+		POWER_USAGE("power_usage"), ON_OFF_STATUS("on_off_status"), BOOLEAN_SENSOR("boolean_sensor");
 
 		@Nonnull
 		private final String name;
@@ -104,8 +104,7 @@ public final class ExampleDriver implements Driver {
 		private ExampleDataPointFactory(@Nonnull final Scheduler scheduler) {
 			this.strategies.put(DataPointTypes.POWER_USAGE, new PowerUsageDataPointFactory(scheduler));
 			this.strategies.put(DataPointTypes.ON_OFF_STATUS, new OnOffStatusDataPointFactory());
-			this.strategies.put(DataPointTypes.CONTACT_STATUS,new ContactStatusDataPointFactory(scheduler));
-			this.strategies.put(DataPointTypes.MOVEMENT_STATUS,new MovementStatusDataPointFactory(scheduler));
+			this.strategies.put(DataPointTypes.BOOLEAN_SENSOR,new BooleanSensorDataPointFactory(scheduler));
 		}
 
 		/**
@@ -183,13 +182,19 @@ public final class ExampleDriver implements Driver {
 		//Configure a contact sensor device
 		final DeviceConfigurationBuilder contactSensor1 = deviceManagement.configure("contactSensor1",DriverConstants.PROFILE_ContactSensor_ID);
 		contactSensor1.fromManufacturer("IOLITE GmbH");
-		contactSensor1.withDataPoint(DataPointTypes.CONTACT_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_ContactSensor_contactDetected_ID);
+		contactSensor1.withDataPoint(DataPointTypes.BOOLEAN_SENSOR.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_ContactSensor_contactDetected_ID);
 		contactSensor1.addIfAbsent();
 
 		//Configure a movement sensor device
 		final DeviceConfigurationBuilder movementSensor1 = deviceManagement.configure("movementSensor1",DriverConstants.PROFILE_MovementSensor_ID);
 		movementSensor1.fromManufacturer("IOLITE GmbH");
-		movementSensor1.withDataPoint(DataPointTypes.MOVEMENT_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_MovementSensor_movementDetected_ID);
+		movementSensor1.withDataPoint(DataPointTypes.BOOLEAN_SENSOR.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_MovementSensor_movementDetected_ID);
 		movementSensor1.addIfAbsent();
+
+		//Configure a movement sensor device
+		final DeviceConfigurationBuilder smokeSensor1 = deviceManagement.configure("smokeSensor1",DriverConstants.PROFILE_SmokeDetectionSensor_ID);
+		smokeSensor1.fromManufacturer("IOLITE GmbH");
+		smokeSensor1.withDataPoint(DataPointTypes.BOOLEAN_SENSOR.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_SmokeDetectionSensor_smokeDetected_ID);
+		smokeSensor1.addIfAbsent();
 	}
 }
