@@ -191,10 +191,16 @@ public final class ExampleDriver implements Driver {
 		movementSensor1.withDataPoint(DataPointTypes.BOOLEAN_SENSOR.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_MovementSensor_movementDetected_ID);
 		movementSensor1.addIfAbsent();
 
-		//Configure a movement sensor device
+		//Configure a smoke sensor device
 		final DeviceConfigurationBuilder smokeSensor1 = deviceManagement.configure("smokeSensor1",DriverConstants.PROFILE_SmokeDetectionSensor_ID);
 		smokeSensor1.fromManufacturer("IOLITE GmbH");
 		smokeSensor1.withDataPoint(DataPointTypes.BOOLEAN_SENSOR.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_SmokeDetectionSensor_smokeDetected_ID);
 		smokeSensor1.addIfAbsent();
+
+		//Configure a window device
+		final DeviceConfigurationBuilder window1 = deviceManagement.configure("window1",DriverConstants.PROFILE_Window_ID);
+		window1.fromManufacturer("IOLITE GmbH");
+		window1.withDataPoint(DataPointTypes.BOOLEAN_SENSOR.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Window_open_ID);
+		window1.addIfAbsent();
 	}
 }
