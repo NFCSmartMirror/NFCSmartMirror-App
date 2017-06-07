@@ -38,7 +38,7 @@ public class BooleanSensorDataPointFactory implements DataPointFactory {
 		private final DataPointValueCallback callback;
 
 		private BooleanSensorDataPointWithSimulation(@Nonnull final DataPointValueCallback dataPointValueCallback, @Nonnull final Scheduler scheduler) {
-			this.callback = Validate.notNull(dataPointValueCallback, "'dataPointValueCallback' must not be null");
+			this.callback = dataPointValueCallback;
 			this.value = true;
 			this.switchValueTask = scheduler.scheduleWithFixedDelay(this::reportChangeValue, 0, 10, TimeUnit.SECONDS);
 		}

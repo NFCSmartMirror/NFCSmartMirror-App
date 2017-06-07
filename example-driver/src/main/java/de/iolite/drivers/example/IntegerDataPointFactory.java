@@ -72,7 +72,7 @@ final class IntegerDataPointFactory implements DataPointFactory {
 	 * @param initialValue initial value that will be set.
 	 */
 	IntegerDataPointFactory(final int initialValue) {
-		this.initialValue = Validate.notNull(initialValue, "'initialValue' must not be null");
+		this.initialValue = initialValue;
 	}
 
 	/**

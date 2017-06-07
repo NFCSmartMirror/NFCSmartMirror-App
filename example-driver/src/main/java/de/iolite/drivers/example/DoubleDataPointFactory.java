@@ -72,7 +72,7 @@ final class DoubleDataPointFactory implements DataPointFactory {
 	 * @param initialValue initial value that will be set.
 	 */
 	DoubleDataPointFactory(final double initialValue) {
-		this.initialValue = Validate.notNull(initialValue, "'initialValue' must not be null");
+		this.initialValue = initialValue;
 	}
 
 	/**
