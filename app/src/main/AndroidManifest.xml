@@ -45,6 +45,13 @@
             </intent-filter>
         </receiver>
 
+        <receiver android:name="com.mirror.nfc.nfcsmartmirror.ServiceReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE" />
+            </intent-filter>
+        </receiver>
+
+
 
 
 
