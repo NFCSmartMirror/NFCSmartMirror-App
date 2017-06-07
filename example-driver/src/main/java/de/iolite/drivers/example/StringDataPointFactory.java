@@ -62,6 +62,7 @@ final class StringDataPointFactory implements DataPointFactory {
 
 	@Nonnull
 	private final String initialValue;
+
 	/**
 	 * Constructor of StringDataPointFactory.
 	 *

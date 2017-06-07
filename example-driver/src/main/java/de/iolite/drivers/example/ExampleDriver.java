@@ -43,9 +43,8 @@ import de.iolite.utilities.concurrency.scheduler.Scheduler;
 public final class ExampleDriver implements Driver {
 
 	private enum DataPointTypes {
-		POWER_USAGE("power_usage"), ON_OFF_STATUS("on_off_status"), BOOLEAN_SENSOR("boolean_sensor"), INTEGER_DATAPOINT("integer_datapoint"),
-		STRING_DATAPOINT("string_datapoint"), BLIND_DRIVE_STATUS("blind_drive_status"), DOUBLE_DATAPOINT("double_datapoint"),
-		PLAYBACK_STATE_DATAPOINT("playback_state");
+		POWER_USAGE("power_usage"), ON_OFF_STATUS("on_off_status"), BOOLEAN_SENSOR("boolean_sensor"), INTEGER_DATAPOINT("integer_datapoint"), STRING_DATAPOINT(
+				"string_datapoint"), BLIND_DRIVE_STATUS("blind_drive_status"), DOUBLE_DATAPOINT("double_datapoint"), PLAYBACK_STATE_DATAPOINT("playback_state");
 
 		@Nonnull
 		private final String name;
@@ -199,8 +198,8 @@ public final class ExampleDriver implements Driver {
 		final DeviceConfigurationBuilder lamp1 = deviceManagement.configure("lamp1", DriverConstants.PROFILE_Lamp_ID);
 		lamp1.fromManufacturer(IOLITE_GMBH_NAME);
 		lamp1.withDataPoint(DataPointTypes.ON_OFF_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_on_ID);
-		lamp1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
-				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_powerUsage_ID);
+		lamp1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(DataPointTypes.POWER_USAGE.getName())
+				.ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_powerUsage_ID);
 		lamp1.addIfAbsent();
 
 		// Configure a contact sensor device
@@ -232,8 +231,8 @@ public final class ExampleDriver implements Driver {
 		blind1.fromManufacturer(IOLITE_GMBH_NAME);
 		blind1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Blind_blindLevel_ID);
 		blind1.withDataPoint(DataPointTypes.BLIND_DRIVE_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Blind_blindDriveStatus_ID);
-		blind1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
-				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Blind_powerUsage_ID);
+		blind1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(DataPointTypes.POWER_USAGE.getName())
+				.ofProperty(DriverConstants.PROFILE_PROPERTY_Blind_powerUsage_ID);
 		blind1.addIfAbsent();
 
 		// Configure a door device
@@ -246,8 +245,8 @@ public final class ExampleDriver implements Driver {
 		final DeviceConfigurationBuilder socket1 = deviceManagement.configure("socket1", DriverConstants.PROFILE_Socket_ID);
 		socket1.fromManufacturer(IOLITE_GMBH_NAME);
 		socket1.withDataPoint(DataPointTypes.ON_OFF_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Socket_on_ID);
-		socket1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
-				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Socket_powerUsage_ID);
+		socket1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(DataPointTypes.POWER_USAGE.getName())
+				.ofProperty(DriverConstants.PROFILE_PROPERTY_Socket_powerUsage_ID);
 		socket1.addIfAbsent();
 
 		// Configure a cook top with four hobs device
@@ -270,8 +269,8 @@ public final class ExampleDriver implements Driver {
 				DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_hob3HeatLevelRemaining_ID);
 		cookTop1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(
 				DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_hob4HeatLevelRemaining_ID);
-		cookTop1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
-				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_powerUsage_ID);
+		cookTop1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(DataPointTypes.POWER_USAGE.getName())
+				.ofProperty(DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_powerUsage_ID);
 		cookTop1.addIfAbsent();
 
 		// Configure a oven device
@@ -279,8 +278,8 @@ public final class ExampleDriver implements Driver {
 		oven1.fromManufacturer(IOLITE_GMBH_NAME);
 		oven1.withDataPoint(DataPointTypes.ON_OFF_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Oven_on_ID);
 		oven1.withDataPoint(DataPointTypes.DOUBLE_DATAPOINT.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Oven_bakingTemperatureSetting_ID);
-		oven1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
-				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Oven_powerUsage_ID);
+		oven1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(DataPointTypes.POWER_USAGE.getName())
+				.ofProperty(DriverConstants.PROFILE_PROPERTY_Oven_powerUsage_ID);
 		oven1.addIfAbsent();
 
 		// Configure a media player device
