@@ -41,7 +41,7 @@ import de.iolite.utilities.concurrency.scheduler.Scheduler;
 public final class ExampleDriver implements Driver {
 
 	private enum DataPointTypes {
-		POWER_USAGE("power_usage"), ON_OFF_STATUS("on_off_status"), BOOLEAN_SENSOR("boolean_sensor"), INTEGER_DATAPOINT("integer_datapoint"), STRING_DATAPOINT("string_datapoint"), BLIND_DRIVE_STATUS("blind_drive_status");
+		POWER_USAGE("power_usage"), ON_OFF_STATUS("on_off_status"), BOOLEAN_SENSOR("boolean_sensor"), INTEGER_DATAPOINT("integer_datapoint"), STRING_DATAPOINT("string_datapoint"), BLIND_DRIVE_STATUS("blind_drive_status"), DOUBLE_DATAPOINT("double_datapoint");
 
 		@Nonnull
 		private final String name;
@@ -109,6 +109,8 @@ public final class ExampleDriver implements Driver {
 			this.strategies.put(DataPointTypes.BOOLEAN_SENSOR,new BooleanSensorDataPointFactory(scheduler));
 			this.strategies.put(DataPointTypes.INTEGER_DATAPOINT,new IntegerDataPointFactory(0));
 			this.strategies.put(DataPointTypes.BLIND_DRIVE_STATUS,new StringDataPointFactory(PROPERTY_blindDriveStatus_LITERAL_stopped));
+			this.strategies.put(DataPointTypes.DOUBLE_DATAPOINT,new DoubleDataPointFactory(0.0));
+
 
 		}
 
@@ -247,5 +249,13 @@ public final class ExampleDriver implements Driver {
 		cookTop1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
 				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_powerUsage_ID);
 		cookTop1.addIfAbsent();
+
+		//Configure a oven device
+		final DeviceConfigurationBuilder oven1 = deviceManagement.configure("oven1", DriverConstants.PROFILE_Oven_ID);
+		oven1.fromManufacturer(IOLITE_GMBH_NAME);
+		oven1.withDataPoint(DataPointTypes.ON_OFF_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Socket_on_ID);
+		oven1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
+				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Oven_powerUsage_ID);
+		oven1.addIfAbsent();
 	}
 }
