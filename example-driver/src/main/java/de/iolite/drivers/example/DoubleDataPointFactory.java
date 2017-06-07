@@ -64,7 +64,7 @@ final class DoubleDataPointFactory implements DataPointFactory {
 		}
 	}
 
-	private final double initialValue;
+	private final double initialDataPointValue;
 
 	/**
 	 * Constructor of DoubleDataPointFactory.
@@ -72,7 +72,7 @@ final class DoubleDataPointFactory implements DataPointFactory {
 	 * @param initialValue initial value that will be set.
 	 */
 	DoubleDataPointFactory(final double initialValue) {
-		this.initialValue = initialValue;
+		this.initialDataPointValue = initialValue;
 	}
 
 	/**
@@ -86,6 +86,6 @@ final class DoubleDataPointFactory implements DataPointFactory {
 		Validate.notNull(configuration, "'configuration' must not be null");
 		Validate.notNull(propertyTypeIdentifier, "'propertyTypeIdentifier' must not be null");
 		Validate.notNull(callback, "'callback' must not be null");
-		return new DoubleDataPoint(this.initialValue, callback);
+		return new DoubleDataPoint(this.initialDataPointValue, callback);
 	}
 }

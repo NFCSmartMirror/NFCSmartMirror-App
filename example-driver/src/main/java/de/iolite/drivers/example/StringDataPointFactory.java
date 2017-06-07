@@ -61,7 +61,7 @@ final class StringDataPointFactory implements DataPointFactory {
 	}
 
 	@Nonnull
-	private final String initialValue;
+	private final String initialDataPointValue;
 
 	/**
 	 * Constructor of StringDataPointFactory.
@@ -69,7 +69,7 @@ final class StringDataPointFactory implements DataPointFactory {
 	 * @param initialValue initial value that will be set
 	 */
 	StringDataPointFactory(@Nonnull final String initialValue) {
-		this.initialValue = Validate.notNull(initialValue, "'initialValue' must not be null");
+		this.initialDataPointValue = Validate.notNull(initialValue, "'initialValue' must not be null");
 	}
 
 	/**
@@ -83,6 +83,6 @@ final class StringDataPointFactory implements DataPointFactory {
 		Validate.notNull(configuration, "'configuration' must not be null");
 		Validate.notNull(propertyTypeIdentifier, "'propertyTypeIdentifier' must not be null");
 		Validate.notNull(callback, "'callback' must not be null");
-		return new StringDataPoint(this.initialValue, callback);
+		return new StringDataPoint(this.initialDataPointValue, callback);
 	}
 }

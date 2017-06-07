@@ -64,7 +64,7 @@ final class IntegerDataPointFactory implements DataPointFactory {
 		}
 	}
 
-	private final int initialValue;
+	private final int initialDataPointValue;
 
 	/**
 	 * Constructor of IntegerDataPointFactory.
@@ -72,7 +72,7 @@ final class IntegerDataPointFactory implements DataPointFactory {
 	 * @param initialValue initial value that will be set.
 	 */
 	IntegerDataPointFactory(final int initialValue) {
-		this.initialValue = initialValue;
+		this.initialDataPointValue = initialValue;
 	}
 
 	/**
@@ -86,6 +86,6 @@ final class IntegerDataPointFactory implements DataPointFactory {
 		Validate.notNull(configuration, "'configuration' must not be null");
 		Validate.notNull(propertyTypeIdentifier, "'propertyTypeIdentifier' must not be null");
 		Validate.notNull(callback, "'callback' must not be null");
-		return new IntegerDataPoint(this.initialValue, callback);
+		return new IntegerDataPoint(this.initialDataPointValue, callback);
 	}
 }
