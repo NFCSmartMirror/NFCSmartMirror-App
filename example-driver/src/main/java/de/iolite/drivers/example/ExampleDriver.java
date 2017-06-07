@@ -253,7 +253,8 @@ public final class ExampleDriver implements Driver {
 		//Configure a oven device
 		final DeviceConfigurationBuilder oven1 = deviceManagement.configure("oven1", DriverConstants.PROFILE_Oven_ID);
 		oven1.fromManufacturer(IOLITE_GMBH_NAME);
-		oven1.withDataPoint(DataPointTypes.ON_OFF_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Socket_on_ID);
+		oven1.withDataPoint(DataPointTypes.ON_OFF_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Oven_on_ID);
+		oven1.withDataPoint(DataPointTypes.DOUBLE_DATAPOINT.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Oven_bakingTemperatureSetting_ID);
 		oven1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
 				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Oven_powerUsage_ID);
 		oven1.addIfAbsent();
