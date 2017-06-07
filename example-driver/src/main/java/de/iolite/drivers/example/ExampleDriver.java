@@ -153,6 +153,8 @@ public final class ExampleDriver implements Driver {
 	 */
 	@Nonnull
 	static final String CONFIGURATION_RANDOMIZE_VALUE = "randomize.value";
+
+	@Nonnull
 	private static final String IOLITE_GMBH_NAME = "IOLITE GmbH";
 
 	/**

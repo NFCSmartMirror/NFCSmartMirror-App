@@ -32,7 +32,7 @@ final class StringDataPointFactory implements DataPointFactory {
 		@Nonnull
 		private final DataPointValueCallback callback;
 
-		private StringDataPoint(final String initialValue, @Nonnull final DataPointValueCallback dataPointValueCallback)
+		private StringDataPoint(@Nonnull final String initialValue, @Nonnull final DataPointValueCallback dataPointValueCallback)
 				throws DataPointConfigurationException {
 			this.callback = dataPointValueCallback;
 			try {
