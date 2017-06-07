@@ -36,7 +36,7 @@ final class DoubleDataPointFactory implements DataPointFactory {
 				throws DataPointConfigurationException {
 			this.callback = dataPointValueCallback;
 			try {
-				callback.newDoubleValue(initialValue);
+				this.callback.newDoubleValue(initialValue);
 			}
 			catch (final IllegalValueException e) {
 				throw new DataPointConfigurationException("Initial value is illegal", e);
@@ -65,6 +65,7 @@ final class DoubleDataPointFactory implements DataPointFactory {
 	DoubleDataPointFactory(final double initialValue) {
 		this.initialValue = Validate.notNull(initialValue, "'initialValue' must not be null");
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */

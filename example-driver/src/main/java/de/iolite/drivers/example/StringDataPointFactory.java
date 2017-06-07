@@ -36,12 +36,13 @@ final class StringDataPointFactory implements DataPointFactory {
 				throws DataPointConfigurationException {
 			this.callback = dataPointValueCallback;
 			try {
-				callback.newStringValue(initialValue);
+				this.callback.newStringValue(initialValue);
 			}
 			catch (final IllegalValueException e) {
 				throw new DataPointConfigurationException("Initial value is illegal", e);
 			}
 		}
+
 		@Override
 		public void destroy() {
 			// nothing to do
@@ -58,12 +59,14 @@ final class StringDataPointFactory implements DataPointFactory {
 			}
 		}
 	}
+
 	@Nonnull
 	private final String initialValue;
 
 	StringDataPointFactory(@Nonnull final String initialValue) {
 		this.initialValue = Validate.notNull(initialValue, "'initialValue' must not be null");
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -72,6 +75,6 @@ final class StringDataPointFactory implements DataPointFactory {
 	public DataPoint create(@Nonnull final DataPointConfiguration configuration, @Nonnull final String propertyTypeIdentifier,
 			@Nonnull final DataPointValueCallback callback)
 			throws DataPointConfigurationException, DataPointInstantiationException {
-		return new StringDataPoint(initialValue, callback);
+		return new StringDataPoint(this.initialValue, callback);
 	}
 }

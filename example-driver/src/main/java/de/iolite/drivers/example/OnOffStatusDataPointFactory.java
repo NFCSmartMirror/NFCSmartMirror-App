@@ -33,9 +33,9 @@ final class OnOffStatusDataPointFactory implements DataPointFactory {
 		private OnOffStatusDataPoint(@Nonnull final DataPointValueCallback dataPointValueCallback)
 				throws DataPointConfigurationException {
 			this.callback = dataPointValueCallback;
-			//init with false value
+			// init with false value
 			try {
-				callback.newBooleanValue(false);
+				this.callback.newBooleanValue(false);
 			}
 			catch (final IllegalValueException e) {
 				throw new DataPointConfigurationException("Initial value is illegal", e);

@@ -1,3 +1,4 @@
+
 package de.iolite.drivers.example;
 
 import java.util.concurrent.Future;
@@ -24,7 +25,6 @@ import de.iolite.utilities.concurrency.scheduler.Scheduler;
  * @author Jonathan Gruber
  * @author Steven Tunack
  * @since 17.05
- *
  */
 public class BooleanSensorDataPointFactory implements DataPointFactory {
 
@@ -38,8 +38,7 @@ public class BooleanSensorDataPointFactory implements DataPointFactory {
 		@Nonnull
 		private final DataPointValueCallback callback;
 
-		private MovementStatusDataPointWithSimulation(@Nonnull final DataPointValueCallback dataPointValueCallback,
-				@Nonnull final Scheduler scheduler) {
+		private MovementStatusDataPointWithSimulation(@Nonnull final DataPointValueCallback dataPointValueCallback, @Nonnull final Scheduler scheduler) {
 			this.callback = dataPointValueCallback;
 			this.value = true;
 			this.switchValueTask = scheduler.scheduleWithFixedDelay(this::reportChangeValue, 0, 10, TimeUnit.SECONDS);
@@ -80,6 +79,6 @@ public class BooleanSensorDataPointFactory implements DataPointFactory {
 	public DataPoint create(@Nonnull final DataPointConfiguration configuration, @Nonnull final String propertyTypeIdentifier,
 			@Nonnull final DataPointValueCallback callback)
 			throws DataPointConfigurationException, DataPointInstantiationException {
-		return new  BooleanSensorDataPointFactory.MovementStatusDataPointWithSimulation(callback, this.scheduler);
+		return new BooleanSensorDataPointFactory.MovementStatusDataPointWithSimulation(callback, this.scheduler);
 	}
 }
