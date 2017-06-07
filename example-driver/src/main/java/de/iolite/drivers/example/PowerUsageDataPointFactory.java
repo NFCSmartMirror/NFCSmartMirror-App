@@ -97,6 +97,11 @@ final class PowerUsageDataPointFactory implements DataPointFactory {
 	@Nonnull
 	private final Scheduler scheduler;
 
+	/**
+	 * Constructor of PowerUsageDataPointFactory.
+	 *
+	 * @param dataPointScheduler scheduler for this driver.
+	 */
 	PowerUsageDataPointFactory(@Nonnull final Scheduler dataPointScheduler) {
 		this.scheduler = Validate.notNull(dataPointScheduler, "'dataPointScheduler' must not be null");
 	}
@@ -109,6 +114,9 @@ final class PowerUsageDataPointFactory implements DataPointFactory {
 	public DataPoint create(@Nonnull final DataPointConfiguration configuration, @Nonnull final String propertyTypeIdentifier,
 			@Nonnull final DataPointValueCallback callback)
 			throws DataPointConfigurationException, DataPointInstantiationException {
+		Validate.notNull(configuration, "'configuration' must not be null");
+		Validate.notNull(propertyTypeIdentifier, "'propertyTypeIdentifier' must not be null");
+		Validate.notNull(callback, "'callback' must not be null");
 		final double initialValue = configuration.getDouble(ExampleDriver.CONFIGURATION_INITIAL_VALUE);
 		final Optional<Boolean> randomizeValue = configuration.optBoolean(ExampleDriver.CONFIGURATION_RANDOMIZE_VALUE);
 		if (randomizeValue.isPresent() && randomizeValue.get()) {

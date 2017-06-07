@@ -28,7 +28,7 @@ import de.iolite.utilities.concurrency.scheduler.Scheduler;
  */
 public class BooleanSensorDataPointFactory implements DataPointFactory {
 
-	private static final class MovementStatusDataPointWithSimulation implements DataPoint {
+	private static final class BooleanSensorDataPointWithSimulation implements DataPoint {
 
 		@Nonnull
 		private final Future<?> switchValueTask;
@@ -38,8 +38,8 @@ public class BooleanSensorDataPointFactory implements DataPointFactory {
 		@Nonnull
 		private final DataPointValueCallback callback;
 
-		private MovementStatusDataPointWithSimulation(@Nonnull final DataPointValueCallback dataPointValueCallback, @Nonnull final Scheduler scheduler) {
-			this.callback = dataPointValueCallback;
+		private BooleanSensorDataPointWithSimulation(@Nonnull final DataPointValueCallback dataPointValueCallback, @Nonnull final Scheduler scheduler) {
+			this.callback = Validate.notNull(dataPointValueCallback, "'dataPointValueCallback' must not be null");
 			this.value = true;
 			this.switchValueTask = scheduler.scheduleWithFixedDelay(this::reportChangeValue, 0, 10, TimeUnit.SECONDS);
 		}
@@ -70,6 +70,11 @@ public class BooleanSensorDataPointFactory implements DataPointFactory {
 	@Nonnull
 	private final Scheduler scheduler;
 
+	/**
+	 * Constructor of BooleanSensorDataPointFactory.
+	 *
+	 * @param dataPointScheduler scheduler for this driver.
+	 */
 	BooleanSensorDataPointFactory(@Nonnull final Scheduler dataPointScheduler) {
 		this.scheduler = Validate.notNull(dataPointScheduler, "'dataPointScheduler' must not be null");
 	}
@@ -79,6 +84,9 @@ public class BooleanSensorDataPointFactory implements DataPointFactory {
 	public DataPoint create(@Nonnull final DataPointConfiguration configuration, @Nonnull final String propertyTypeIdentifier,
 			@Nonnull final DataPointValueCallback callback)
 			throws DataPointConfigurationException, DataPointInstantiationException {
-		return new BooleanSensorDataPointFactory.MovementStatusDataPointWithSimulation(callback, this.scheduler);
+		Validate.notNull(configuration, "'configuration' must not be null");
+		Validate.notNull(propertyTypeIdentifier, "'propertyTypeIdentifier' must not be null");
+		Validate.notNull(callback, "'callback' must not be null");
+		return new BooleanSensorDataPointWithSimulation(callback, this.scheduler);
 	}
 }

@@ -51,8 +51,12 @@ final class DoubleDataPointFactory implements DataPointFactory {
 		@Override
 		public void write(@Nonnull final String newValue)
 				throws WriteFailedException {
+			Validate.notNull(newValue, "'newValue' must not be null");
 			try {
 				this.callback.newDoubleValue(Double.parseDouble(newValue));
+			}
+			catch (final NumberFormatException e) {
+				throw new WriteFailedException(String.format("Failed to parse '%s' to double", newValue), e);
 			}
 			catch (final IllegalValueException e) {
 				throw new WriteFailedException(String.format("Failed to report written value '%s'", newValue), e);
@@ -62,6 +66,11 @@ final class DoubleDataPointFactory implements DataPointFactory {
 
 	private final double initialValue;
 
+	/**
+	 * Constructor of DoubleDataPointFactory.
+	 *
+	 * @param initialValue initial value that will be set.
+	 */
 	DoubleDataPointFactory(final double initialValue) {
 		this.initialValue = Validate.notNull(initialValue, "'initialValue' must not be null");
 	}
@@ -74,6 +83,9 @@ final class DoubleDataPointFactory implements DataPointFactory {
 	public DataPoint create(@Nonnull final DataPointConfiguration configuration, @Nonnull final String propertyTypeIdentifier,
 			@Nonnull final DataPointValueCallback callback)
 			throws DataPointConfigurationException, DataPointInstantiationException {
+		Validate.notNull(configuration, "'configuration' must not be null");
+		Validate.notNull(propertyTypeIdentifier, "'propertyTypeIdentifier' must not be null");
+		Validate.notNull(callback, "'callback' must not be null");
 		return new DoubleDataPoint(this.initialValue, callback);
 	}
 }

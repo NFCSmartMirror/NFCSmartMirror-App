@@ -13,6 +13,7 @@ import java.util.Set;
 
 import javax.annotation.Nonnull;
 
+import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -84,6 +85,7 @@ public final class ExampleDriver implements Driver {
 		 */
 		@Override
 		public void onConfigured(@Nonnull final Device device) {
+			Validate.notNull(device, "'device' must not be null");
 			// start all configured devices immediately
 			try {
 				device.start(this.factory);
@@ -125,6 +127,9 @@ public final class ExampleDriver implements Driver {
 		public DataPoint create(@Nonnull final DataPointConfiguration configuration, @Nonnull final String propertyTypeIdentifier,
 				@Nonnull final DataPointValueCallback callback)
 				throws DataPointConfigurationException, DataPointInstantiationException {
+			Validate.notNull(configuration, "'configuration' must not be null");
+			Validate.notNull(propertyTypeIdentifier, "'propertyTypeIdentifier' must not be null");
+			Validate.notNull(callback, "'callback' must not be null");
 			final DataPointTypes dataPointType = DataPointTypes.get(configuration.getDataPointType());
 			final DataPointFactory strategy = this.strategies.get(dataPointType);
 
@@ -138,9 +143,15 @@ public final class ExampleDriver implements Driver {
 	@Nonnull
 	private static final Logger LOGGER = LoggerFactory.getLogger(ExampleDriver.class);
 
+	/**
+	 * Configuration entry for initial value of the power usage property.
+	 */
 	@Nonnull
 	static final String CONFIGURATION_INITIAL_VALUE = "initial.value";
 
+	/**
+	 * Configuration entry that (when set true) report random values to the power usage property.
+	 */
 	@Nonnull
 	static final String CONFIGURATION_RANDOMIZE_VALUE = "randomize.value";
 	private static final String IOLITE_GMBH_NAME = "IOLITE GmbH";
@@ -152,6 +163,8 @@ public final class ExampleDriver implements Driver {
 	@Nonnull
 	public DeviceConfigurationObserver start(@Nonnull final DriverAPI driverAPI, @Nonnull final Set<Device> existingDevices)
 			throws DriverStartFailedException {
+		Validate.notNull(driverAPI, "'driverAPI' must not be null");
+		Validate.notNull(existingDevices, "'existingDevices' must not be null");
 		// report some example devices
 		try {
 			configureExampleDevices(driverAPI);

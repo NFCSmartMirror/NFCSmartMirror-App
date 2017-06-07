@@ -7,6 +7,8 @@ package de.iolite.drivers.example;
 
 import javax.annotation.Nonnull;
 
+import org.apache.commons.lang3.Validate;
+
 import de.iolite.drivers.api.WriteFailedException;
 import de.iolite.drivers.framework.DataPoint;
 import de.iolite.drivers.framework.DataPointConfiguration;
@@ -67,6 +69,9 @@ final class OnOffStatusDataPointFactory implements DataPointFactory {
 	public DataPoint create(@Nonnull final DataPointConfiguration configuration, @Nonnull final String propertyTypeIdentifier,
 			@Nonnull final DataPointValueCallback callback)
 			throws DataPointConfigurationException, DataPointInstantiationException {
+		Validate.notNull(configuration, "'configuration' must not be null");
+		Validate.notNull(propertyTypeIdentifier, "'propertyTypeIdentifier' must not be null");
+		Validate.notNull(callback, "'callback' must not be null");
 		return new OnOffStatusDataPoint(callback);
 	}
 }
