@@ -216,5 +216,11 @@ public final class ExampleDriver implements Driver {
 		blind1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
 				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Blind_powerUsage_ID);
 		blind1.addIfAbsent();
+
+		//Configure a door device
+		final DeviceConfigurationBuilder door1 = deviceManagement.configure("door1",DriverConstants.PROFILE_Door_ID);
+		door1.fromManufacturer("IOLITE GmbH");
+		door1.withDataPoint(DataPointTypes.BOOLEAN_SENSOR.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Door_open_ID);
+		door1.addIfAbsent();
 	}
 }
