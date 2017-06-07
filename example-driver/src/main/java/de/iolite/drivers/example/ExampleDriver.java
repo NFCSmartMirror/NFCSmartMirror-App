@@ -5,6 +5,7 @@
 package de.iolite.drivers.example;
 
 import static de.iolite.drivers.basic.DriverConstants.PROPERTY_blindDriveStatus_LITERAL_stopped;
+import static de.iolite.drivers.basic.DriverConstants.PROPERTY_playbackState_LITERAL_stop;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -41,7 +42,7 @@ import de.iolite.utilities.concurrency.scheduler.Scheduler;
 public final class ExampleDriver implements Driver {
 
 	private enum DataPointTypes {
-		POWER_USAGE("power_usage"), ON_OFF_STATUS("on_off_status"), BOOLEAN_SENSOR("boolean_sensor"), INTEGER_DATAPOINT("integer_datapoint"), STRING_DATAPOINT("string_datapoint"), BLIND_DRIVE_STATUS("blind_drive_status"), DOUBLE_DATAPOINT("double_datapoint");
+		POWER_USAGE("power_usage"), ON_OFF_STATUS("on_off_status"), BOOLEAN_SENSOR("boolean_sensor"), INTEGER_DATAPOINT("integer_datapoint"), STRING_DATAPOINT("string_datapoint"), BLIND_DRIVE_STATUS("blind_drive_status"), DOUBLE_DATAPOINT("double_datapoint"), PLAYBACK_STATE_DATAPOINT("playback_state");
 
 		@Nonnull
 		private final String name;
@@ -110,8 +111,8 @@ public final class ExampleDriver implements Driver {
 			this.strategies.put(DataPointTypes.INTEGER_DATAPOINT,new IntegerDataPointFactory(0));
 			this.strategies.put(DataPointTypes.BLIND_DRIVE_STATUS,new StringDataPointFactory(PROPERTY_blindDriveStatus_LITERAL_stopped));
 			this.strategies.put(DataPointTypes.DOUBLE_DATAPOINT,new DoubleDataPointFactory(0.0));
-
-
+			this.strategies.put(DataPointTypes.STRING_DATAPOINT,new StringDataPointFactory(""));
+			this.strategies.put(DataPointTypes.PLAYBACK_STATE_DATAPOINT,new StringDataPointFactory(PROPERTY_playbackState_LITERAL_stop));
 		}
 
 		/**
@@ -258,5 +259,14 @@ public final class ExampleDriver implements Driver {
 		oven1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
 				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Oven_powerUsage_ID);
 		oven1.addIfAbsent();
+
+		//Configure a media player device
+		final DeviceConfigurationBuilder mediaPlayer1 = deviceManagement.configure("mediaplayer1", DriverConstants.PROFILE_MediaPlayerDevice_ID);
+		mediaPlayer1.fromManufacturer(IOLITE_GMBH_NAME);
+		mediaPlayer1.withDataPoint(DataPointTypes.STRING_DATAPOINT.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_MediaPlayerDevice_mediaURI_ID);
+		mediaPlayer1.withDataPoint(DataPointTypes.PLAYBACK_STATE_DATAPOINT.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_MediaPlayerDevice_playbackState_ID);
+		mediaPlayer1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
+				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_MediaPlayerDevice_powerUsage_ID);
+		mediaPlayer1.addIfAbsent();
 	}
 }
