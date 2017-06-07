@@ -138,6 +138,7 @@ public final class ExampleDriver implements Driver {
 
 	@Nonnull
 	static final String CONFIGURATION_RANDOMIZE_VALUE = "randomize.value";
+	private static final String IOLITE_GMBH_NAME = "IOLITE GmbH";
 
 	/**
 	 * {@inheritDoc}
@@ -178,7 +179,7 @@ public final class ExampleDriver implements Driver {
 			throws DeviceConfigurationException {
 		//Configure a lamp device
 		final DeviceConfigurationBuilder lamp1 = deviceManagement.configure("lamp1", DriverConstants.PROFILE_Lamp_ID);
-		lamp1.fromManufacturer("IOLITE GmbH");
+		lamp1.fromManufacturer(IOLITE_GMBH_NAME);
 		lamp1.withDataPoint(DataPointTypes.ON_OFF_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_on_ID);
 		lamp1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
 				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_powerUsage_ID);
@@ -186,31 +187,31 @@ public final class ExampleDriver implements Driver {
 
 		//Configure a contact sensor device
 		final DeviceConfigurationBuilder contactSensor1 = deviceManagement.configure("contactSensor1",DriverConstants.PROFILE_ContactSensor_ID);
-		contactSensor1.fromManufacturer("IOLITE GmbH");
+		contactSensor1.fromManufacturer(IOLITE_GMBH_NAME);
 		contactSensor1.withDataPoint(DataPointTypes.BOOLEAN_SENSOR.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_ContactSensor_contactDetected_ID);
 		contactSensor1.addIfAbsent();
 
 		//Configure a movement sensor device
 		final DeviceConfigurationBuilder movementSensor1 = deviceManagement.configure("movementSensor1",DriverConstants.PROFILE_MovementSensor_ID);
-		movementSensor1.fromManufacturer("IOLITE GmbH");
+		movementSensor1.fromManufacturer(IOLITE_GMBH_NAME);
 		movementSensor1.withDataPoint(DataPointTypes.BOOLEAN_SENSOR.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_MovementSensor_movementDetected_ID);
 		movementSensor1.addIfAbsent();
 
 		//Configure a smoke sensor device
 		final DeviceConfigurationBuilder smokeSensor1 = deviceManagement.configure("smokeSensor1",DriverConstants.PROFILE_SmokeDetectionSensor_ID);
-		smokeSensor1.fromManufacturer("IOLITE GmbH");
+		smokeSensor1.fromManufacturer(IOLITE_GMBH_NAME);
 		smokeSensor1.withDataPoint(DataPointTypes.BOOLEAN_SENSOR.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_SmokeDetectionSensor_smokeDetected_ID);
 		smokeSensor1.addIfAbsent();
 
 		//Configure a window device
 		final DeviceConfigurationBuilder window1 = deviceManagement.configure("window1",DriverConstants.PROFILE_Window_ID);
-		window1.fromManufacturer("IOLITE GmbH");
+		window1.fromManufacturer(IOLITE_GMBH_NAME);
 		window1.withDataPoint(DataPointTypes.BOOLEAN_SENSOR.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Window_open_ID);
 		window1.addIfAbsent();
 
 		//Configure a blind device
 		final DeviceConfigurationBuilder blind1 = deviceManagement.configure("blind1", DriverConstants.PROFILE_Blind_ID);
-		blind1.fromManufacturer("IOLITE GmbH");
+		blind1.fromManufacturer(IOLITE_GMBH_NAME);
 		blind1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Blind_blindLevel_ID);
 		blind1.withDataPoint(DataPointTypes.BLIND_DRIVE_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Blind_blindDriveStatus_ID);
 		blind1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
@@ -219,8 +220,16 @@ public final class ExampleDriver implements Driver {
 
 		//Configure a door device
 		final DeviceConfigurationBuilder door1 = deviceManagement.configure("door1",DriverConstants.PROFILE_Door_ID);
-		door1.fromManufacturer("IOLITE GmbH");
+		door1.fromManufacturer(IOLITE_GMBH_NAME);
 		door1.withDataPoint(DataPointTypes.BOOLEAN_SENSOR.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Door_open_ID);
 		door1.addIfAbsent();
+
+		//Configure a socket device
+		final DeviceConfigurationBuilder socket1 = deviceManagement.configure("socket", DriverConstants.PROFILE_Socket_ID);
+		socket1.fromManufacturer(IOLITE_GMBH_NAME);
+		socket1.withDataPoint(DataPointTypes.ON_OFF_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Socket_on_ID);
+		socket1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
+				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Socket_powerUsage_ID);
+		socket1.addIfAbsent();
 	}
 }
