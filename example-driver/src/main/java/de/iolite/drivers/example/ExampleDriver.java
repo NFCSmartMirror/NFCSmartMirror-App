@@ -225,11 +225,27 @@ public final class ExampleDriver implements Driver {
 		door1.addIfAbsent();
 
 		//Configure a socket device
-		final DeviceConfigurationBuilder socket1 = deviceManagement.configure("socket", DriverConstants.PROFILE_Socket_ID);
+		final DeviceConfigurationBuilder socket1 = deviceManagement.configure("socket1", DriverConstants.PROFILE_Socket_ID);
 		socket1.fromManufacturer(IOLITE_GMBH_NAME);
 		socket1.withDataPoint(DataPointTypes.ON_OFF_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Socket_on_ID);
 		socket1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
 				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Socket_powerUsage_ID);
 		socket1.addIfAbsent();
+
+		//Configure a cook top with four hobs device
+		final DeviceConfigurationBuilder cookTop1 = deviceManagement.configure("cooktop1", DriverConstants.PROFILE_CookTopWithFourHobs_ID);
+		cookTop1.fromManufacturer(IOLITE_GMBH_NAME);
+//		cookTop1.withDataPoint(DataPointTypes.ON_OFF_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_on_ID);
+		cookTop1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_hob1HeatLevelSetting_ID);
+		cookTop1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_hob2HeatLevelSetting_ID);
+		cookTop1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_hob3HeatLevelSetting_ID);
+		cookTop1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_hob4HeatLevelSetting_ID);
+		cookTop1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_hob1HeatLevelRemaining_ID);
+		cookTop1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_hob2HeatLevelRemaining_ID);
+		cookTop1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_hob3HeatLevelRemaining_ID);
+		cookTop1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_hob4HeatLevelRemaining_ID);
+		cookTop1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
+				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_powerUsage_ID);
+		cookTop1.addIfAbsent();
 	}
 }
