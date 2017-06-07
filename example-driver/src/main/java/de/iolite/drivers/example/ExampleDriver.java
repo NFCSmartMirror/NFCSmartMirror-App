@@ -4,6 +4,8 @@
 
 package de.iolite.drivers.example;
 
+import static de.iolite.drivers.basic.DriverConstants.PROPERTY_blindDriveStatus_LITERAL_stopped;
+
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Set;
@@ -39,7 +41,7 @@ import de.iolite.utilities.concurrency.scheduler.Scheduler;
 public final class ExampleDriver implements Driver {
 
 	private enum DataPointTypes {
-		POWER_USAGE("power_usage"), ON_OFF_STATUS("on_off_status"), BOOLEAN_SENSOR("boolean_sensor");
+		POWER_USAGE("power_usage"), ON_OFF_STATUS("on_off_status"), BOOLEAN_SENSOR("boolean_sensor"), INTEGER_DATAPOINT("integer_datapoint"), STRING_DATAPOINT("string_datapoint"), BLIND_DRIVE_STATUS("blind_drive_status");
 
 		@Nonnull
 		private final String name;
@@ -105,6 +107,9 @@ public final class ExampleDriver implements Driver {
 			this.strategies.put(DataPointTypes.POWER_USAGE, new PowerUsageDataPointFactory(scheduler));
 			this.strategies.put(DataPointTypes.ON_OFF_STATUS, new OnOffStatusDataPointFactory());
 			this.strategies.put(DataPointTypes.BOOLEAN_SENSOR,new BooleanSensorDataPointFactory(scheduler));
+			this.strategies.put(DataPointTypes.INTEGER_DATAPOINT,new IntegerDataPointFactory(0));
+			this.strategies.put(DataPointTypes.BLIND_DRIVE_STATUS,new StringDataPointFactory(PROPERTY_blindDriveStatus_LITERAL_stopped));
+
 		}
 
 		/**
@@ -202,5 +207,14 @@ public final class ExampleDriver implements Driver {
 		window1.fromManufacturer("IOLITE GmbH");
 		window1.withDataPoint(DataPointTypes.BOOLEAN_SENSOR.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Window_open_ID);
 		window1.addIfAbsent();
+
+		//Configure a blind device
+		final DeviceConfigurationBuilder blind1 = deviceManagement.configure("blind1", DriverConstants.PROFILE_Blind_ID);
+		blind1.fromManufacturer("IOLITE GmbH");
+		blind1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Blind_blindLevel_ID);
+		blind1.withDataPoint(DataPointTypes.BLIND_DRIVE_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Blind_blindDriveStatus_ID);
+		blind1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
+				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Blind_powerUsage_ID);
+		blind1.addIfAbsent();
 	}
 }

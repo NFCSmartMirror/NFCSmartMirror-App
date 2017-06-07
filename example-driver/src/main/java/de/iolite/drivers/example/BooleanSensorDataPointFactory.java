@@ -22,6 +22,7 @@ import de.iolite.utilities.concurrency.scheduler.Scheduler;
  * Created by Jonathan Gruber on 17.05.2017.
  *
  * @author Jonathan Gruber
+ * @author Steven Tunack
  * @since 17.05
  *
  */
