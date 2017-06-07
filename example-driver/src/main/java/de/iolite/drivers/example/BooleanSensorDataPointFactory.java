@@ -33,7 +33,6 @@ public class BooleanSensorDataPointFactory implements DataPointFactory {
 		@Nonnull
 		private final Future<?> switchValueTask;
 
-		@Nonnull
 		private boolean value;
 
 		@Nonnull
