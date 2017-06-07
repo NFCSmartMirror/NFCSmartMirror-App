@@ -4,12 +4,16 @@
 
 package de.iolite.drivers.example;
 
+import static de.iolite.drivers.basic.DriverConstants.PROPERTY_blindDriveStatus_LITERAL_stopped;
+import static de.iolite.drivers.basic.DriverConstants.PROPERTY_playbackState_LITERAL_stop;
+
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Nonnull;
 
+import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,18 +43,14 @@ import de.iolite.utilities.concurrency.scheduler.Scheduler;
 public final class ExampleDriver implements Driver {
 
 	private enum DataPointTypes {
-		POWER_USAGE("power_usage"), ON_OFF_STATUS("on_off_status"), CONTACT_STATUS("contact_status"), MOVEMENT_STATUS("movement_status");
+		POWER_USAGE("power_usage"), ON_OFF_STATUS("on_off_status"), BOOLEAN_SENSOR("boolean_sensor"), INTEGER_DATAPOINT("integer_datapoint"), STRING_DATAPOINT(
+				"string_datapoint"), BLIND_DRIVE_STATUS("blind_drive_status"), DOUBLE_DATAPOINT("double_datapoint"), PLAYBACK_STATE_DATAPOINT("playback_state");
 
 		@Nonnull
 		private final String name;
 
 		private DataPointTypes(@Nonnull final String typeName) {
 			this.name = typeName;
-		}
-
-		@Nonnull
-		private String getName() {
-			return this.name;
 		}
 
 		@Nonnull
@@ -62,6 +62,11 @@ public final class ExampleDriver implements Driver {
 				}
 			}
 			throw new DataPointConfigurationException(String.format("Unknown data point type '%s'", dataPointTypeName));
+		}
+
+		@Nonnull
+		private String getName() {
+			return this.name;
 		}
 	}
 
@@ -79,6 +84,7 @@ public final class ExampleDriver implements Driver {
 		 */
 		@Override
 		public void onConfigured(@Nonnull final Device device) {
+			Validate.notNull(device, "'device' must not be null");
 			// start all configured devices immediately
 			try {
 				device.start(this.factory);
@@ -104,8 +110,12 @@ public final class ExampleDriver implements Driver {
 		private ExampleDataPointFactory(@Nonnull final Scheduler scheduler) {
 			this.strategies.put(DataPointTypes.POWER_USAGE, new PowerUsageDataPointFactory(scheduler));
 			this.strategies.put(DataPointTypes.ON_OFF_STATUS, new OnOffStatusDataPointFactory());
-			this.strategies.put(DataPointTypes.CONTACT_STATUS,new ContactStatusDataPointFactory(scheduler));
-			this.strategies.put(DataPointTypes.MOVEMENT_STATUS,new MovementStatusDataPointFactory(scheduler));
+			this.strategies.put(DataPointTypes.BOOLEAN_SENSOR, new BooleanSensorDataPointFactory(scheduler));
+			this.strategies.put(DataPointTypes.INTEGER_DATAPOINT, new IntegerDataPointFactory(0));
+			this.strategies.put(DataPointTypes.BLIND_DRIVE_STATUS, new StringDataPointFactory(PROPERTY_blindDriveStatus_LITERAL_stopped));
+			this.strategies.put(DataPointTypes.DOUBLE_DATAPOINT, new DoubleDataPointFactory(0.0));
+			this.strategies.put(DataPointTypes.STRING_DATAPOINT, new StringDataPointFactory(""));
+			this.strategies.put(DataPointTypes.PLAYBACK_STATE_DATAPOINT, new StringDataPointFactory(PROPERTY_playbackState_LITERAL_stop));
 		}
 
 		/**
@@ -116,6 +126,9 @@ public final class ExampleDriver implements Driver {
 		public DataPoint create(@Nonnull final DataPointConfiguration configuration, @Nonnull final String propertyTypeIdentifier,
 				@Nonnull final DataPointValueCallback callback)
 				throws DataPointConfigurationException, DataPointInstantiationException {
+			Validate.notNull(configuration, "'configuration' must not be null");
+			Validate.notNull(propertyTypeIdentifier, "'propertyTypeIdentifier' must not be null");
+			Validate.notNull(callback, "'callback' must not be null");
 			final DataPointTypes dataPointType = DataPointTypes.get(configuration.getDataPointType());
 			final DataPointFactory strategy = this.strategies.get(dataPointType);
 
@@ -129,11 +142,20 @@ public final class ExampleDriver implements Driver {
 	@Nonnull
 	private static final Logger LOGGER = LoggerFactory.getLogger(ExampleDriver.class);
 
+	/**
+	 * Configuration entry for initial value of the power usage property.
+	 */
 	@Nonnull
 	static final String CONFIGURATION_INITIAL_VALUE = "initial.value";
 
+	/**
+	 * Configuration entry that (when set true) report random values to the power usage property.
+	 */
 	@Nonnull
 	static final String CONFIGURATION_RANDOMIZE_VALUE = "randomize.value";
+
+	@Nonnull
+	private static final String IOLITE_GMBH_NAME = "IOLITE GmbH";
 
 	/**
 	 * {@inheritDoc}
@@ -142,6 +164,8 @@ public final class ExampleDriver implements Driver {
 	@Nonnull
 	public DeviceConfigurationObserver start(@Nonnull final DriverAPI driverAPI, @Nonnull final Set<Device> existingDevices)
 			throws DriverStartFailedException {
+		Validate.notNull(driverAPI, "'driverAPI' must not be null");
+		Validate.notNull(existingDevices, "'existingDevices' must not be null");
 		// report some example devices
 		try {
 			configureExampleDevices(driverAPI);
@@ -172,24 +196,102 @@ public final class ExampleDriver implements Driver {
 
 	private void configureExampleDevices(@Nonnull final DriverAPI deviceManagement)
 			throws DeviceConfigurationException {
-		//Configure a lamp device
+		// Configure a lamp device
 		final DeviceConfigurationBuilder lamp1 = deviceManagement.configure("lamp1", DriverConstants.PROFILE_Lamp_ID);
-		lamp1.fromManufacturer("IOLITE GmbH");
+		lamp1.fromManufacturer(IOLITE_GMBH_NAME);
 		lamp1.withDataPoint(DataPointTypes.ON_OFF_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_on_ID);
-		lamp1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
-				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_powerUsage_ID);
+		lamp1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(DataPointTypes.POWER_USAGE.getName())
+				.ofProperty(DriverConstants.PROFILE_PROPERTY_Lamp_powerUsage_ID);
 		lamp1.addIfAbsent();
 
-		//Configure a contact sensor device
-		final DeviceConfigurationBuilder contactSensor1 = deviceManagement.configure("contactSensor1",DriverConstants.PROFILE_ContactSensor_ID);
-		contactSensor1.fromManufacturer("IOLITE GmbH");
-		contactSensor1.withDataPoint(DataPointTypes.CONTACT_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_ContactSensor_contactDetected_ID);
+		// Configure a contact sensor device
+		final DeviceConfigurationBuilder contactSensor1 = deviceManagement.configure("contactSensor1", DriverConstants.PROFILE_ContactSensor_ID);
+		contactSensor1.fromManufacturer(IOLITE_GMBH_NAME);
+		contactSensor1.withDataPoint(DataPointTypes.BOOLEAN_SENSOR.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_ContactSensor_contactDetected_ID);
 		contactSensor1.addIfAbsent();
 
-		//Configure a movement sensor device
-		final DeviceConfigurationBuilder movementSensor1 = deviceManagement.configure("movementSensor1",DriverConstants.PROFILE_MovementSensor_ID);
-		movementSensor1.fromManufacturer("IOLITE GmbH");
-		movementSensor1.withDataPoint(DataPointTypes.MOVEMENT_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_MovementSensor_movementDetected_ID);
+		// Configure a movement sensor device
+		final DeviceConfigurationBuilder movementSensor1 = deviceManagement.configure("movementSensor1", DriverConstants.PROFILE_MovementSensor_ID);
+		movementSensor1.fromManufacturer(IOLITE_GMBH_NAME);
+		movementSensor1.withDataPoint(DataPointTypes.BOOLEAN_SENSOR.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_MovementSensor_movementDetected_ID);
 		movementSensor1.addIfAbsent();
+
+		// Configure a smoke sensor device
+		final DeviceConfigurationBuilder smokeSensor1 = deviceManagement.configure("smokeSensor1", DriverConstants.PROFILE_SmokeDetectionSensor_ID);
+		smokeSensor1.fromManufacturer(IOLITE_GMBH_NAME);
+		smokeSensor1.withDataPoint(DataPointTypes.BOOLEAN_SENSOR.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_SmokeDetectionSensor_smokeDetected_ID);
+		smokeSensor1.addIfAbsent();
+
+		// Configure a window device
+		final DeviceConfigurationBuilder window1 = deviceManagement.configure("window1", DriverConstants.PROFILE_Window_ID);
+		window1.fromManufacturer(IOLITE_GMBH_NAME);
+		window1.withDataPoint(DataPointTypes.BOOLEAN_SENSOR.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Window_open_ID);
+		window1.addIfAbsent();
+
+		// Configure a blind device
+		final DeviceConfigurationBuilder blind1 = deviceManagement.configure("blind1", DriverConstants.PROFILE_Blind_ID);
+		blind1.fromManufacturer(IOLITE_GMBH_NAME);
+		blind1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Blind_blindLevel_ID);
+		blind1.withDataPoint(DataPointTypes.BLIND_DRIVE_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Blind_blindDriveStatus_ID);
+		blind1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(DataPointTypes.POWER_USAGE.getName())
+				.ofProperty(DriverConstants.PROFILE_PROPERTY_Blind_powerUsage_ID);
+		blind1.addIfAbsent();
+
+		// Configure a door device
+		final DeviceConfigurationBuilder door1 = deviceManagement.configure("door1", DriverConstants.PROFILE_Door_ID);
+		door1.fromManufacturer(IOLITE_GMBH_NAME);
+		door1.withDataPoint(DataPointTypes.BOOLEAN_SENSOR.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Door_open_ID);
+		door1.addIfAbsent();
+
+		// Configure a socket device
+		final DeviceConfigurationBuilder socket1 = deviceManagement.configure("socket1", DriverConstants.PROFILE_Socket_ID);
+		socket1.fromManufacturer(IOLITE_GMBH_NAME);
+		socket1.withDataPoint(DataPointTypes.ON_OFF_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Socket_on_ID);
+		socket1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(DataPointTypes.POWER_USAGE.getName())
+				.ofProperty(DriverConstants.PROFILE_PROPERTY_Socket_powerUsage_ID);
+		socket1.addIfAbsent();
+
+		// Configure a cook top with four hobs device
+		final DeviceConfigurationBuilder cookTop1 = deviceManagement.configure("cooktop1", DriverConstants.PROFILE_CookTopWithFourHobs_ID);
+		cookTop1.fromManufacturer(IOLITE_GMBH_NAME);
+		// cookTop1.withDataPoint(DataPointTypes.ON_OFF_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_on_ID);
+		cookTop1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(
+				DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_hob1HeatLevelSetting_ID);
+		cookTop1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(
+				DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_hob2HeatLevelSetting_ID);
+		cookTop1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(
+				DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_hob3HeatLevelSetting_ID);
+		cookTop1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(
+				DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_hob4HeatLevelSetting_ID);
+		cookTop1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(
+				DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_hob1HeatLevelRemaining_ID);
+		cookTop1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(
+				DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_hob2HeatLevelRemaining_ID);
+		cookTop1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(
+				DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_hob3HeatLevelRemaining_ID);
+		cookTop1.withDataPoint(DataPointTypes.INTEGER_DATAPOINT.getName()).ofProperty(
+				DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_hob4HeatLevelRemaining_ID);
+		cookTop1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(DataPointTypes.POWER_USAGE.getName())
+				.ofProperty(DriverConstants.PROFILE_PROPERTY_CookTopWithFourHobs_powerUsage_ID);
+		cookTop1.addIfAbsent();
+
+		// Configure a oven device
+		final DeviceConfigurationBuilder oven1 = deviceManagement.configure("oven1", DriverConstants.PROFILE_Oven_ID);
+		oven1.fromManufacturer(IOLITE_GMBH_NAME);
+		oven1.withDataPoint(DataPointTypes.ON_OFF_STATUS.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Oven_on_ID);
+		oven1.withDataPoint(DataPointTypes.DOUBLE_DATAPOINT.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_Oven_bakingTemperatureSetting_ID);
+		oven1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(DataPointTypes.POWER_USAGE.getName())
+				.ofProperty(DriverConstants.PROFILE_PROPERTY_Oven_powerUsage_ID);
+		oven1.addIfAbsent();
+
+		// Configure a media player device
+		final DeviceConfigurationBuilder mediaPlayer1 = deviceManagement.configure("mediaplayer1", DriverConstants.PROFILE_MediaPlayerDevice_ID);
+		mediaPlayer1.fromManufacturer(IOLITE_GMBH_NAME);
+		mediaPlayer1.withDataPoint(DataPointTypes.STRING_DATAPOINT.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_MediaPlayerDevice_mediaURI_ID);
+		mediaPlayer1.withDataPoint(DataPointTypes.PLAYBACK_STATE_DATAPOINT.getName()).ofProperty(
+				DriverConstants.PROFILE_PROPERTY_MediaPlayerDevice_playbackState_ID);
+		mediaPlayer1.withConfiguration(CONFIGURATION_RANDOMIZE_VALUE, true).and(CONFIGURATION_INITIAL_VALUE, 120).forDataPoint(
+				DataPointTypes.POWER_USAGE.getName()).ofProperty(DriverConstants.PROFILE_PROPERTY_MediaPlayerDevice_powerUsage_ID);
+		mediaPlayer1.addIfAbsent();
 	}
 }

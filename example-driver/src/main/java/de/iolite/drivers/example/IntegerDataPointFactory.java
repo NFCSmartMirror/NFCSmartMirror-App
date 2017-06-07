@@ -1,6 +1,6 @@
 /* Copyright (C) 2016 IOLITE GmbH, All rights reserved.
  * Created:    16.11.2016
- * Created by: lehmann
+ * Created by: Steven Tunack
  */
 
 package de.iolite.drivers.example;
@@ -20,24 +20,23 @@ import de.iolite.drivers.framework.exception.DataPointInstantiationException;
 import de.iolite.drivers.framework.exception.IllegalValueException;
 
 /**
- * Produces on/off data points.
+ * Produces integer data points.
  *
- * @author Grzegorz Lehmann
- * @since 16.11
+ * @author Steven Tunack
+ * @since 17.06
  */
-final class OnOffStatusDataPointFactory implements DataPointFactory {
+final class IntegerDataPointFactory implements DataPointFactory {
 
-	private static final class OnOffStatusDataPoint implements WritableDataPoint {
+	private static final class IntegerDataPoint implements WritableDataPoint {
 
 		@Nonnull
 		private final DataPointValueCallback callback;
 
-		private OnOffStatusDataPoint(@Nonnull final DataPointValueCallback dataPointValueCallback)
+		private IntegerDataPoint(final int initialValue, @Nonnull final DataPointValueCallback dataPointValueCallback)
 				throws DataPointConfigurationException {
 			this.callback = dataPointValueCallback;
-			// init with false value
 			try {
-				this.callback.newBooleanValue(false);
+				this.callback.newIntValue(initialValue);
 			}
 			catch (final IllegalValueException e) {
 				throw new DataPointConfigurationException("Initial value is illegal", e);
@@ -52,13 +51,28 @@ final class OnOffStatusDataPointFactory implements DataPointFactory {
 		@Override
 		public void write(@Nonnull final String newValue)
 				throws WriteFailedException {
+			Validate.notNull(newValue, "'newValue' must not be null");
 			try {
-				this.callback.newBooleanValue(Boolean.parseBoolean(newValue));
+				this.callback.newIntValue(Integer.parseInt(newValue));
+			}
+			catch (final NumberFormatException e) {
+				throw new WriteFailedException(String.format("Failed to parse '%s' to int", newValue), e);
 			}
 			catch (final IllegalValueException e) {
 				throw new WriteFailedException(String.format("Failed to report written value '%s'", newValue), e);
 			}
 		}
+	}
+
+	private final int initialDataPointValue;
+
+	/**
+	 * Constructor of IntegerDataPointFactory.
+	 *
+	 * @param initialValue initial value that will be set.
+	 */
+	IntegerDataPointFactory(final int initialValue) {
+		this.initialDataPointValue = initialValue;
 	}
 
 	/**
@@ -72,6 +86,6 @@ final class OnOffStatusDataPointFactory implements DataPointFactory {
 		Validate.notNull(configuration, "'configuration' must not be null");
 		Validate.notNull(propertyTypeIdentifier, "'propertyTypeIdentifier' must not be null");
 		Validate.notNull(callback, "'callback' must not be null");
-		return new OnOffStatusDataPoint(callback);
+		return new IntegerDataPoint(this.initialDataPointValue, callback);
 	}
 }

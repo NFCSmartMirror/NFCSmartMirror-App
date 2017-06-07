@@ -1,6 +1,6 @@
 /* Copyright (C) 2016 IOLITE GmbH, All rights reserved.
  * Created:    16.11.2016
- * Created by: lehmann
+ * Created by: Steven Tunack
  */
 
 package de.iolite.drivers.example;
@@ -20,24 +20,23 @@ import de.iolite.drivers.framework.exception.DataPointInstantiationException;
 import de.iolite.drivers.framework.exception.IllegalValueException;
 
 /**
- * Produces on/off data points.
+ * Produces string data points.
  *
- * @author Grzegorz Lehmann
- * @since 16.11
+ * @author Steven Tunack
+ * @since 17.06
  */
-final class OnOffStatusDataPointFactory implements DataPointFactory {
+final class StringDataPointFactory implements DataPointFactory {
 
-	private static final class OnOffStatusDataPoint implements WritableDataPoint {
+	private static final class StringDataPoint implements WritableDataPoint {
 
 		@Nonnull
 		private final DataPointValueCallback callback;
 
-		private OnOffStatusDataPoint(@Nonnull final DataPointValueCallback dataPointValueCallback)
+		private StringDataPoint(@Nonnull final String initialValue, @Nonnull final DataPointValueCallback dataPointValueCallback)
 				throws DataPointConfigurationException {
 			this.callback = dataPointValueCallback;
-			// init with false value
 			try {
-				this.callback.newBooleanValue(false);
+				this.callback.newStringValue(initialValue);
 			}
 			catch (final IllegalValueException e) {
 				throw new DataPointConfigurationException("Initial value is illegal", e);
@@ -53,12 +52,24 @@ final class OnOffStatusDataPointFactory implements DataPointFactory {
 		public void write(@Nonnull final String newValue)
 				throws WriteFailedException {
 			try {
-				this.callback.newBooleanValue(Boolean.parseBoolean(newValue));
+				this.callback.newStringValue(newValue);
 			}
 			catch (final IllegalValueException e) {
 				throw new WriteFailedException(String.format("Failed to report written value '%s'", newValue), e);
 			}
 		}
+	}
+
+	@Nonnull
+	private final String initialDataPointValue;
+
+	/**
+	 * Constructor of StringDataPointFactory.
+	 *
+	 * @param initialValue initial value that will be set
+	 */
+	StringDataPointFactory(@Nonnull final String initialValue) {
+		this.initialDataPointValue = Validate.notNull(initialValue, "'initialValue' must not be null");
 	}
 
 	/**
@@ -72,6 +83,6 @@ final class OnOffStatusDataPointFactory implements DataPointFactory {
 		Validate.notNull(configuration, "'configuration' must not be null");
 		Validate.notNull(propertyTypeIdentifier, "'propertyTypeIdentifier' must not be null");
 		Validate.notNull(callback, "'callback' must not be null");
-		return new OnOffStatusDataPoint(callback);
+		return new StringDataPoint(this.initialDataPointValue, callback);
 	}
 }
