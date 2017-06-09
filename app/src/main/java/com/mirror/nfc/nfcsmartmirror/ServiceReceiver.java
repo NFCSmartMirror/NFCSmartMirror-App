@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.widget.Toast;
 
 /**
  * Created by mukesh on 19/5/15.
@@ -20,6 +21,9 @@ public class ServiceReceiver extends BroadcastReceiver {
             public void onCallStateChanged(int state, String incomingNumber) {
                 super.onCallStateChanged(state, incomingNumber);
                 System.out.println("incomingNumber : " + incomingNumber);
+                int duration = Toast.LENGTH_LONG;
+                Toast toast = Toast.makeText(context,"incomingNumber: "+ incomingNumber, duration );
+                toast.show();
                 Intent msgrcv = new Intent("Msg");
                 msgrcv.putExtra("package", "");
                 msgrcv.putExtra("ticker", incomingNumber);
