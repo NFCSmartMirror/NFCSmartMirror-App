@@ -21,14 +21,17 @@ public class ServiceReceiver extends BroadcastReceiver {
             public void onCallStateChanged(int state, String incomingNumber) {
                 super.onCallStateChanged(state, incomingNumber);
                 System.out.println("incomingNumber : " + incomingNumber);
-                int duration = Toast.LENGTH_LONG;
-                Toast toast = Toast.makeText(context,"incomingNumber: "+ incomingNumber, duration );
-                toast.show();
+                //int duration = Toast.LENGTH_LONG;
+                //Toast toast = Toast.makeText(context,"incomingNumber: "+ incomingNumber, duration);
+                //Toast.makeText("random").
+                //toast.show();
+                Toast.makeText(context, "incomingNumber: "+ incomingNumber +  "State: " + state, Toast.LENGTH_LONG).show();
                 Intent msgrcv = new Intent("Msg");
                 msgrcv.putExtra("package", "");
                 msgrcv.putExtra("ticker", incomingNumber);
                 msgrcv.putExtra("title", incomingNumber);
                 msgrcv.putExtra("text", "");
+                System.setOut("msgrv");
                 LocalBroadcastManager.getInstance(context).sendBroadcast(msgrcv);
             }
         }, PhoneStateListener.LISTEN_CALL_STATE);
