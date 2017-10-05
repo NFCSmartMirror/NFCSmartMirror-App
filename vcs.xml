@@ -34,6 +34,10 @@
           <option name="url" value="https://github.com/nadam/nfc-reader.git" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="https://github.com/CHGitHack/RewardChain.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="C:\Users\Julian\Documents\GitHub" />
